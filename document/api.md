@@ -14,7 +14,7 @@
 
 ## 后台使用用户名密码登录接口
 
-POST  /v1/admin/info
+GET  /v1/admin
 
 用户用户名登录，并获取与用户相关信息，并且将token, identifier设置在COOKIES里面
 

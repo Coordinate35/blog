@@ -10,7 +10,8 @@ CREATE TABLE admin(
     password VARCHAR NOT NULL,
     token VARCHAR NOT NULL,
     last_login_time INT NOT NULL,
-    available BOOLEAN NOT NULL
+    available BOOLEAN NOT NULL DEFAULT TRUE,
+    UNIQUE(name)
 );
 
 CREATE TABLE article(
@@ -21,7 +22,7 @@ CREATE TABLE article(
     discription VARCHAR NOT NULL,
     publish_time INT NOT NULL,
     last_edit_time INT NOT NULL,
-    available BOOLEAN NOT NULL
+    available BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE remark(
@@ -34,18 +35,18 @@ CREATE TABLE remark(
     father_id INT NOT NULL,
     root_comment_id INT NOT NULL,
     publish_time INT NOT NULL,
-    available BOOLEAN NOT NULL
+    available BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE tag(
     tag_id SERIAL NOT NULL PRIMARY KEY,
     content VARCHAR NOT NULL,
-    available BOOLEAN NOT NULL
+    available BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE article_tag(
     article_id INT NOT NULL REFERENCES article(article_id),
     tag_id INT NOT NULL REFERENCES tag(tag_id),
-    available BOOLEAN NOT NULL,
+    available BOOLEAN NOT NULL DEFAULT TRUE,
     PRIMARY KEY (article_id, tag_id)
 );

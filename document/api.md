@@ -50,62 +50,22 @@ GET  /v1/admin
 | identifier      | 用户身份的标识     |
 | token           | 用户用于下次登录的令牌 |
 
-## 后台使用identifier/token登录接口
-
-POST  /v1/admin
-
-用户登录，并获取与用户相关信息，刷新用于记住我的token，并且将token, identifier设置在COOKIES里面
-
-参数：
-
-| 参数名        | 说明                      |
-| ---------- | ----------------------- |
-| identifier | 必须，用户的的标识               |
-| token      | 必须，用户的密码，建议前端进行md5的一次哈希 |
-| type       | 必须，为2                   |
-
-
-
-成功时返回：
-
-状态码 200
-
-```json
-{
-  "name": "",
-  "last_login_time": "",
-  "identifier": "",
-  "token": ""
-}
-```
-
-说明：
-
-| 参数名             | 说明          |
-| --------------- | ----------- |
-| name            | 用户的账号名      |
-| last_login_time | 用户上一次登陆的时间  |
-| identifier      | 用户身份的标识     |
-| token           | 用户用于下次登录的令牌 |
-
-
 
 ## 发布博文接口
 
-POST /v1/blog/article
+POST /v1/blog
 
 用户发布博文的接口
 
 参数：
 
-| 参数名         | 说明            |
-| ----------- | ------------- |
-| identifier  | 必须，用户的身份标识    |
-| token       | 必须，验证用户身份的灵摆  |
-| title       | 必须，文章标题       |
-| description | 必须，文章的摘要描述    |
-| content     | 必须，文章的内容      |
-| tags        | 必须，标签之间用\|号隔开 |
+| 参数名         | 说明             |
+| ----------- | -------------- |
+| title       | 必须，文章标题        |
+| description | 必须，文章的摘要描述     |
+| content     | 必须，文章的内容       |
+| tags        | 必须,，标签之间用\|号隔开 |
+| type        | 必须，固定为1        |
 
 成功时返回：
 
@@ -115,7 +75,7 @@ POST /v1/blog/article
 
 ## 发表评论接口
 
-POST /v1/blog/comment
+POST /v1/blog
 
 游客发表评论接口
 
@@ -128,6 +88,7 @@ POST /v1/blog/comment
 | nickname  | 必须，评论者昵称                    |
 | email     | 必须，评论者的电子邮件                 |
 | website   | 可选，评论者的个人主页                 |
+| type      | 必须，固定为2                     |
 
 
 

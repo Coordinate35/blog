@@ -8,6 +8,7 @@ CREATE TABLE admin(
     admin_id SERIAL NOT NULL PRIMARY KEY,
     name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    identifier VARCHAR,
     token VARCHAR NOT NULL,
     last_login_time INT NOT NULL,
     available BOOLEAN NOT NULL DEFAULT TRUE,

@@ -6,7 +6,7 @@ class Admin extends MY_Controller {
     public function __construct() {
         parent::__construct();
         
-        $this->load->model('user_model', 'user');
+        $this->load->model('admin_model', 'admin');
         $this->load->helper('password');
     }
 
@@ -15,9 +15,6 @@ class Admin extends MY_Controller {
         switch ($type) {
             case GET_ADMIN_TYPE_LOGIN_PASSWORD:
                 $this->_login_by_password();
-                break;
-            case GET_ADMIN_TYPE_LOGIN_TOKEN:
-                $this->_login_by_token();
                 break;
             default:
                 $this->make_bad_request_response();
@@ -39,24 +36,24 @@ class Admin extends MY_Controller {
 
         $name = $this->input->get('name', TRUE);
         $password = $this->input->get('password', TRUE);
-        $user_info = $this->user->get_user_by_name($name);
-        if (FALSE === $user_info) {
+        $admin_info = $this->admin->get_admin_by_name($name);
+        if (FALSE === $admin_info) {
             $this->make_internal_server_error();
         }
-        if ( ! password_verify($password, $user_info[0]['password'])) {
+        if ( ! password_verify($password, $admin_info[0]['password'])) {
             $this->response['error'] = "Name and password not match";
             api_output($this->response, HTTP_BAD_REQUEST);
         }
 
         $token = generate_token();
-        $hashed_token = sha1($token);
-        $identifier = $this->_generate_identifier($user_info[0]['admin_id'], $user_info[0]['name']);
-        if (FALSE === $this->user->update_login_info($user_info[0]['admin_id'], $hashed_token)) {
+        $hashed_token = password_hash($token, PASSWORD_BCRYPT, ['cost' => 10]);
+        $identifier = $this->_generate_identifier($admin_info[0]['admin_id'], $admin_info[0]['name']);
+        if (FALSE === $this->admin->update_login_info($admin_info[0]['admin_id'], $hashed_token, $identifier)) {
             $this->make_internal_server_error();
         }
 
         $this->response['name'] = $name;
-        $this->response['last_login_time'] = $user_info[0]['last_login_time'];
+        $this->response['last_login_time'] = $admin_info[0]['last_login_time'];
         $this->response['identifier'] = $identifier;
         $this->response['token'] = $token;
 
@@ -91,7 +88,7 @@ class Admin extends MY_Controller {
             'last_login_time' => $time,
         );
 
-        if (FALSE === $this->user->insert_entry($data)) {
+        if (FALSE === $this->admin->insert_entry($data)) {
             $this->make_internal_server_error_response();
         }
 

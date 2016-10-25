@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 const ALLOW_REGISTER = TRUE;
+const COOKIE_EXPIRED_TIME = 18000;
+const COOKIE_DOMAIN = 'coordinate35.cn';
 
 switch (ENVIRONMENT) {
     case 'development':

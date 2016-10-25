@@ -13,3 +13,10 @@ if ( ! function_exists('api_output')) {
         exit;
     }
 }
+
+if ( ! function_exists('generate_token')) {
+
+    function generate_token() {
+        return md5(openssl_random_pseudo_bytes(128));
+    }
+}

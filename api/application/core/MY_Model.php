@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model {
 
+    protected $_table;
+
     public function __construct() {
         parent::__construct();
 
@@ -10,6 +12,11 @@ class MY_Model extends CI_Model {
     }
 
     public function insert_entry($data) {
-        return $this->db->insert(TABLE_ADMIN, $data);
+        return $this->db->insert($this->_table, $data);
+    }
+
+    public function update($data, $condition) {
+        $this->db->where($condition);
+        return $this->db->update($this->_table, $data);
     }
 }

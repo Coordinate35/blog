@@ -1,0 +1,104 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Admin extends MY_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        
+        $this->load->model('user_model', 'user');
+        $this->load->helper('password');
+    }
+
+    public function get() {
+        $type = $this->input->get('type');
+        switch ($type) {
+            case GET_ADMIN_TYPE_LOGIN_PASSWORD:
+                $this->_login_by_password();
+                break;
+            case GET_ADMIN_TYPE_LOGIN_TOKEN:
+                $this->_login_by_token();
+                break;
+            default:
+                $this->make_bad_request_response();
+        }
+    }
+
+    public function post() {
+        $this->_register();
+    }
+
+    private function _login_by_password() {
+        $login_by_passowrd_rules = $this->config->item('login_by_password', 'form_rules');
+        $get_method_data = $_GET;
+        $this->form_validation->set_data($get_method_data);
+        $this->form_validation->set_rules($login_by_passowrd_rules);
+        if (FALSE === $this->form_validation->run()) {
+            $this->make_bad_request_response();
+        }
+
+        $name = $this->input->get('name', TRUE);
+        $password = $this->input->get('password', TRUE);
+        $user_info = $this->user->get_user_by_name($name);
+        if (FALSE === $user_info) {
+            $this->make_internal_server_error();
+        }
+        if ( ! password_verify($password, $user_info[0]['password'])) {
+            $this->response['error'] = "Name and password not match";
+            api_output($this->response, HTTP_BAD_REQUEST);
+        }
+
+        $token = generate_token();
+        $hashed_token = sha1($token);
+        $identifier = $this->_generate_identifier($user_info[0]['admin_id'], $user_info[0]['name']);
+        if (FALSE === $this->user->update_login_info($user_info[0]['admin_id'], $hashed_token)) {
+            $this->make_internal_server_error();
+        }
+
+        $this->response['name'] = $name;
+        $this->response['last_login_time'] = $user_info[0]['last_login_time'];
+        $this->response['identifier'] = $identifier;
+        $this->response['token'] = $token;
+
+        set_cookie('identifier', $identifier, COOKIE_EXPIRED_TIME, COOKIE_DOMAIN);
+        set_cookie('token', $token, COOKIE_EXPIRED_TIME, COOKIE_DOMAIN);
+
+        api_output($this->response, HTTP_OK);
+    }
+
+    private function _register() {
+        if (FALSE === ALLOW_REGISTER) {
+            $this->response["error"] = $this->lang->line("prompt_register_not_allowed");
+            api_output($this->response, HTTP_FORBIDDEN);
+        }
+
+        $register_rules = $this->config->item('register', 'form_rules');
+        $this->form_validation->set_rules($register_rules);
+        if (FALSE === $this->form_validation->run()) {
+            $this->response['error'] = $this->form_validation->error_string();
+            api_output($this->response, HTTP_BAD_REQUEST);
+        }
+
+        $name = $this->input->post('name', TRUE);
+        $password = $this->input->post('password', TRUE);
+        $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+        $token = generate_token();
+        $time = time();
+        $data = array(
+            'name' => $name,
+            'password' => $password,
+            'token' => $token,
+            'last_login_time' => $time,
+        );
+
+        if (FALSE === $this->user->insert_entry($data)) {
+            $this->make_internal_server_error_response();
+        }
+
+        api_output($this->response, HTTP_NO_CONTENT);
+    }
+
+    private function _generate_identifier($admin_id, $name) {
+        return md5(md5($admin_id).$name);
+    }
+}

@@ -35,20 +35,24 @@ GET  /v1/admin
 ```json
 {
   "name": "",
-  "last_login_time": ""
+  "last_login_time": "",
+  "identifier": "",
+  "token": ""
 }
 ```
 
 说明：
 
-| 参数名             | 说明         |
-| --------------- | ---------- |
-| name            | 用户的账号名     |
-| last_login_time | 用户上一次登陆的时间 |
+| 参数名             | 说明          |
+| --------------- | ----------- |
+| name            | 用户的账号名      |
+| last_login_time | 用户上一次登陆的时间  |
+| identifier      | 用户身份的标识     |
+| token           | 用户用于下次登录的令牌 |
 
 ## 后台使用identifier/token登录接口
 
-POST  /v1/admin/info
+POST  /v1/admin
 
 用户登录，并获取与用户相关信息，刷新用于记住我的token，并且将token, identifier设置在COOKIES里面
 
@@ -70,15 +74,19 @@ POST  /v1/admin/info
 {
   "name": "",
   "last_login_time": "",
+  "identifier": "",
+  "token": ""
 }
 ```
 
 说明：
 
-| 参数名             | 说明         |
-| --------------- | ---------- |
-| name            | 用户的账号名     |
-| last_login_time | 用户上一次登陆的时间 |
+| 参数名             | 说明          |
+| --------------- | ----------- |
+| name            | 用户的账号名      |
+| last_login_time | 用户上一次登陆的时间  |
+| identifier      | 用户身份的标识     |
+| token           | 用户用于下次登录的令牌 |
 
 
 

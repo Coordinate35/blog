@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once(APPPATH.'config/http_const.php');
 
+require_once(APPPATH.'config/http_type_const.php');
+
 require_once(APPPATH.'config/server_const.php');
 
 require_once(APPPATH.'config/database_const.php');
@@ -25,10 +27,16 @@ class MY_Controller extends CI_Controller {
         $this->load->library('form_validation');
 
         $this->load->helper('MY_global');
+        $this->load->helper('cookie');
     }
 
     protected function make_internal_server_error_response() {
         $this->response['error'] = $this->lang->line('prompt_internal_server_error');
         api_output($this->response, HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    protected function make_bad_request_response() {
+        $this->response['error'] = $this->lang->line('prompt_bad_request');
+        api_output($this->response, HTTP_BAD_REQUEST);
     }
 }

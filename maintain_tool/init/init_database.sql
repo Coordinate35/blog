@@ -34,7 +34,7 @@ CREATE TABLE remark(
     email VARCHAR NOT NULL,
     website VARCHAR NOT NULL,
     father_id INT NOT NULL,
-    root_comment_id INT NOT NULL,
+    root_remark_id INT,
     publish_time INT NOT NULL,
     available BOOLEAN NOT NULL DEFAULT TRUE
 );

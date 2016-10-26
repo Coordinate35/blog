@@ -81,14 +81,15 @@ POST /v1/blog
 
 参数：
 
-| 参数名       | 说明                          |
-| --------- | --------------------------- |
-| father_id | 必须，被评论的评论的id，如果为0，则表示评论文章本身 |
-| content   | 必须，评论内容                     |
-| nickname  | 必须，评论者昵称                    |
-| email     | 必须，评论者的电子邮件                 |
-| website   | 可选，评论者的个人主页                 |
-| type      | 必须，固定为2                     |
+| 参数名        | 说明                          |
+| ---------- | --------------------------- |
+| father_id  | 必须，被评论的评论的id，如果为0，则表示评论文章本身 |
+| content    | 必须，评论内容                     |
+| nickname   | 必须，评论者昵称                    |
+| email      | 必须，评论者的电子邮件                 |
+| website    | 可选，评论者的个人主页                 |
+| type       | 必须，固定为2                     |
+| article_id | 必须，评论所在文章的id                |
 
 
 
@@ -174,7 +175,6 @@ GET /v1/blog
   [
     {
       "article_id": "",
-      "author_id": "",
       "author_name": "",
       "title": "",
       "discription": "",
@@ -196,7 +196,7 @@ GET /v1/blog
 | 参数名            | 说明      |
 | -------------- | ------- |
 | article_id     | 博文的id   |
-| author_id      | 博文作者的id |
+|                |         |
 | author_name    | 博文作者的名字 |
 | title          | 博文的标题   |
 | description    | 博文的摘要描述 |
@@ -227,8 +227,7 @@ GET /v1/blog
 
 ```json
 {
-  "article_id": "",
-  "author_id": "",
+  "article_id": "",c
   "author_name": "",
   "title": "",
   "content": "",

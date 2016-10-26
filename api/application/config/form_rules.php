@@ -13,6 +13,24 @@ $admin_password = array(
     'rules' => 'trim|required|exact_length[32]|alpha_numeric'
 ); 
 
+$limit = array(
+    'field' => 'limit',
+    'label' => 'Limit',
+    'rules' => 'trim|required|is_numeric'
+);
+
+$offset = array(
+    'field' => 'offset',
+    'label' => 'Offset',
+    'rules' => 'trim|required|is_numeric'
+);
+
+$article_id = array(
+    'field' => 'article_id',
+    'label' => 'Article ID',
+    'rules' => 'trim|required|is_numeric'
+);
+
 $config = array(
     'register' => array(
         $admin_name,
@@ -45,15 +63,44 @@ $config = array(
         )
     ),
     'get_article_list_order_by_time' => array(
+        $limit,
+        $offset
+    ),
+    'get_article_list_by_tag_order_by_time' => array(
+        $limit,
+        $offset,
         array(
-            'field' => 'limit',
-            'label' => 'Limit',
+            'field' => 'tag_id',
+            'label' => 'Tag ID',
+            'rules' => 'trim|required|is_numeric'
+        )
+    ),
+    'add_comment' => array(
+        $article_id,
+        array(
+            'field' => 'father_id',
+            'label' => 'Father ID',
             'rules' => 'trim|required|is_numeric'
         ),
         array(
-            'field' => 'offset',
-            'label' => 'Offset',
-            'rules' => 'trim|required|is_numeric'
+            'field' => 'content',
+            'label' => 'Content',
+            'rules' => 'trim|required|max_length[500]'
+        ),
+        array(
+            'field' => 'nickname',
+            'label' => 'Nickname',
+            'rules' => 'trim|required|max_length[30]'
+        ),
+        array(
+            'field' => 'email',
+            'label' => 'E-mail',
+            'rules' => 'trim|required|valid_email'
+        ),
+        array(
+            'field' => 'website',
+            'label' => 'Website',
+            'rules' => 'trim|valid_url'
         )
     )
 );

@@ -102,5 +102,8 @@ $config = array(
             'label' => 'Website',
             'rules' => 'trim|valid_url'
         )
+    ),
+    'get_article_by_id' => array(
+        $article_id
     )
 );

@@ -25,6 +25,7 @@ class MY_Controller extends CI_Controller {
         $this->config->load("form_rules", TRUE);
 
         $this->load->library('form_validation');
+        // $this->load->library('session');
 
         $this->load->helper('MY_global');
         $this->load->helper('cookie');

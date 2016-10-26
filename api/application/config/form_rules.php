@@ -21,5 +21,27 @@ $config = array(
     'login_by_password' => array(
         $admin_name,
         $admin_password
+    ),
+    'add_article' => array(
+        array(
+            'field' => 'title',
+            'label' => 'Title',
+            'rules' => 'trim|required|max_length[60]'
+        ),
+        array(
+            'field' => 'description',
+            'label' => 'Descirption',
+            'rules' => 'trim|required|max_length[500]'
+        ),
+        array(
+            'field' => 'content',
+            'label' => 'Content',
+            'rules' => 'trim|required'
+        ),
+        array(
+            'field' => 'tags',
+            'label' => 'Tags',
+            'rules' => 'trim|required|max_length[50]'
+        )
     )
 );

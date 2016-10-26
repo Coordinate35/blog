@@ -39,16 +39,33 @@ class My_auth_validator {
             return;
         }
         $this->CI->load->model('admin_model', 'admin');
-        $this->CI->load->helper('cookie');
+        // $this->CI->load->helper('cookie');
         $this->CI->load->helper('password');
 
         $identifier = get_cookie('identifier', TRUE);
         $token = get_cookie('password', TRUE);
 
-        $admin_info = $this->admin->get_admin_by_identifier($identifier);
-        if ((FALSE === $admin_info) || ( ! password_verify($token, $admin_info[0]['token']))) {
+        $admin_info = $this->CI->admin->get_admin_by_identifier($identifier);
+        $is_login_timeout = $this->_is_login_timeout($admin_info);
+        // $is_set_admin_info_session = $this->_is_set_admin_info_session();
+        if (/*(FALSE === $is_set_admin_info_session) || */(FALSE === $admin_info) || ( ! password_verify($token, $admin_info[0]['token'])) || (FALSE === $is_login_timeout)) {
             $response = array();
             $response['error'] = $this->CI->lang->line('prompt_not_authorized');
         }
+    }
+
+    private function _is_set_admin_info_session() {
+        if (NULL === $this->session->item('admin_id')) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    private function _is_login_timeout($admin_info) {
+        $current_time = time();
+        if ($current_time - $admin_info[0]['last_login_time'] > LOGIN_TIMEOUT) {
+            return FALSE;
+        }
+        return TRUE;
     }
 }

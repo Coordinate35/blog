@@ -30,6 +30,7 @@ class Blog extends MY_Controller {
         $this->form_validation->set_data($get_method_data);
         $this->form_validation->set_rules($add_article_rules);
         if (FALSE === $this->form_validation->run()) {
+            // var_dump($this->form_validation->error_string());
             $this->make_bad_request_response();
         }
 
@@ -50,6 +51,7 @@ class Blog extends MY_Controller {
         }
         $new_tags = $this->_filter_new_tags($tags, $existed_tags);
         if (0 < count($new_tags)) {
+            $new_tags = array_unique($new_tags);
             if (FALSE === $this->blog->add_tags($new_tags)) {
                 $this->make_internal_server_error_response();
             }
@@ -80,7 +82,7 @@ class Blog extends MY_Controller {
         api_output($this->response, HTTP_NO_CONTENT);
     }
 
-    private function _filter_new_tages($tags, $existed_tags) {
+    private function _filter_new_tags($tags, $existed_tags) {
         $new_tags = array();
         foreach ($tags as $tag) {
             $is_existed = FALSE;

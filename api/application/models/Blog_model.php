@@ -8,16 +8,16 @@ class Blog_model extends MY_Model {
     }
 
     public function get_all_tags() {
-        $result = $this->db->get_where(TABLE_TAG, array('available', TRUE))->result_array();
-        return count($result) > 0 ? $result : FALSE;
+        $result = $this->db->get_where(TABLE_TAG, array('available' => TRUE))->result_array();
+        // return count($result) > 0 ? $result : FALSE;
+        return $result;
     }
 
     public function add_tags($tags) {
         $data = array();
-        foreach ($tags as $tag) {
+        foreach ($tags as $key => $tags) {
             $data[] = array(
                 'content' => $tags,
-                'available' => TRUE
             );
         }
         return $this->db->insert_batch(TABLE_TAG, $data);

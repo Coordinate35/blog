@@ -20,7 +20,7 @@ CREATE TABLE article(
     author_id INT NOT NULL REFERENCES admin(admin_id),
     title VARCHAR NOT NULL,
     content TEXT NOT NULL,
-    discription VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
     publish_time INT NOT NULL,
     last_edit_time INT NOT NULL,
     available BOOLEAN NOT NULL DEFAULT TRUE

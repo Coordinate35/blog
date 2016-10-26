@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$hook['pre_controller'] = array(
+$hook['post_controller_constructor'] = array(
     'class'    => 'My_auth_validator',
     'function' => 'is_admin_logined',
     'filename' => 'My_auth_validator.php',

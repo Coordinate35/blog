@@ -34,7 +34,10 @@ class Blog_model extends MY_Model {
             'last_edit_time' => $time
         );
         $this->_table = TABLE_ARTICLE;
-        return $this->insert_entry($data);
+        if (FALSE === $this->insert_entry($data)) {
+            return FALSE;
+        }
+        return $this->db->insert_id();
     }
 
     public function get_tags_by_content_array($tags) {
@@ -48,5 +51,28 @@ class Blog_model extends MY_Model {
 
     public function add_article_tag($article_tag) {
         return $this->db->insert_batch(TABLE_ARTICLE_TAG, $article_tag);
+    }
+
+    public function get_article_list($limit, $offset) {
+        $this->db->select('article_id, author_id, title, content, description, publish_time');
+        $this->db->from(TABLE_ARTICLE);
+        $this->db->where('available', TRUE);
+        $this->db->order_by('publish_time', 'DESC');
+        $this->db->limit($limit, $offset);
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+
+    public function get_tags_by_article_id($article_id) {
+        $condition = array(
+            'article_id' => $article_id,
+            TABLE_ARTICLE_TAG.'.available' => TRUE
+        );
+        $this->db->select(TABLE_TAG.'.content');
+        $this->db->from(TABLE_ARTICLE_TAG);
+        $this->db->where($condition);
+        $this->db->join(TABLE_TAG, TABLE_ARTICLE_TAG.'.tag_id='.TABLE_TAG.'.tag_id');
+        $result = $this->db->get()->result_array();
+        return count($result) > 0 ? $result : FALSE;
     }
 }

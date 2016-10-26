@@ -14,8 +14,15 @@ class Admin_model extends MY_Model {
             'name' => $name,
             'available' => TRUE
         );
-        $result = $this->db->get_where($this->_table, $condition)->result_array();
-        return count($result) > 0 ? $result : FALSE;
+        return $this->get_admin($condition);
+    }
+
+    public function get_admin_by_id($admin_id) {
+        $condition = array(
+            'admin_id' => $admin_id,
+            'available' => TRUE
+        );
+        return $this->get_admin($condition);
     }
 
     public function get_admin_by_identifier($identifier) {
@@ -23,6 +30,10 @@ class Admin_model extends MY_Model {
             'identifier' => $identifier,
             'available' => TRUE
         );
+        return $this->get_admin($condition);
+    }
+
+    public function get_admin($condition) {
         $result = $this->db->get_where($this->_table, $condition)->result_array();
         return count($result) > 0 ? $result : FALSE;
     }

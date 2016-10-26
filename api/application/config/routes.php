@@ -56,4 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['v1/admin']['POST'] = 'v1/admin/post';
 $route['v1/admin']['GET'] = 'v1/admin/get';
 
+$route['v1/blog']['GET'] = 'v1/blog/get';
 $route['v1/blog']['POST'] = 'v1/blog/post';

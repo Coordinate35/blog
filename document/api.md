@@ -55,7 +55,7 @@ GET  /v1/admin
 
 POST /v1/blog
 
-用户发布博文的接口
+用户发布博文的接口，发布前需要登录
 
 参数：
 
@@ -116,10 +116,9 @@ GET /v1/blog
 
 ```json
 {
-  [
+  "articles": [
     {
       "article_id": "",
-      "author_id": "",
       "author_name": "",
       "title": "",
       "discription": "",
@@ -141,7 +140,7 @@ GET /v1/blog
 | 参数名            | 说明      |
 | -------------- | ------- |
 | article_id     | 博文的id   |
-| author_id      | 博文作者的id |
+|                |         |
 | author_name    | 博文作者的名字 |
 | title          | 博文的标题   |
 | description    | 博文的摘要描述 |
@@ -274,4 +273,36 @@ GET /v1/blog
 | publish_time（comments字段中的） | 评论的发布时间     |
 | tag_id                     | 标签的id       |
 | content(tags中)             | 标签内容        |
+
+
+
+## 获取所有标签接口
+
+GET /v1/blog
+
+获取所有的标签，获取前需要登录
+
+参数：
+
+| 参数名  | 说明      |
+| ---- | ------- |
+| type | 必须，固定为4 |
+
+
+
+成功时返回:
+
+状态码:200
+
+```json
+{
+  "tags": [
+    {
+      'tag_id': "",
+      'content': ""
+    },
+    ...
+  ]
+}
+```
 

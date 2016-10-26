@@ -30,7 +30,8 @@ class My_auth_validator {
         }
 
         $this->allow_access_with_auth = array(
-            '/v1/blog/post/'.POST_BLOG_TYPE_ADD_ARTICLE
+            '/v1/blog/post/'.POST_BLOG_TYPE_ADD_ARTICLE,
+            '/v1/blog/get/'.GET_BLOG_TYPE_TAGS
         );
     }
 

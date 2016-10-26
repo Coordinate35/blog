@@ -43,5 +43,17 @@ $config = array(
             'label' => 'Tags',
             'rules' => 'trim|required|max_length[50]'
         )
+    ),
+    'get_article_list_order_by_time' => array(
+        array(
+            'field' => 'limit',
+            'label' => 'Limit',
+            'rules' => 'trim|required|is_numeric'
+        ),
+        array(
+            'field' => 'offset',
+            'label' => 'Offset',
+            'rules' => 'trim|required|is_numeric'
+        )
     )
 );

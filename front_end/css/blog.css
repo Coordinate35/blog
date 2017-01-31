@@ -1,0 +1,22 @@
+a {
+    color: #0075c9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #009bdf;
+}
+
+#page {
+    width: 660px;
+    margin: 0 auto;
+}
+
+.publish-time {
+    color: #c8c8c8;
+    font-size: 90%;
+}
+
+.article-title {
+    color: #333;
+}

@@ -1,6 +1,6 @@
 # 博客接口文档
 
-测试环境域名： http://test.api.coordinate35.cn
+测试环境域名： http://debug.api.coordinate35.cn
 
 生产环境域名： http://api.coordinate35.cn
 

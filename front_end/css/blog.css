@@ -7,9 +7,27 @@ a:hover {
     color: #009bdf;
 }
 
+botton:hover {
+    background-color: #009bdf;
+}
+
 #page {
     width: 660px;
     margin: 0 auto;
+}
+
+#login-form {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+
+#login-form-title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 .publish-time {
@@ -19,4 +37,42 @@ a:hover {
 
 .article-title {
     color: #333;
+}
+
+.login-input {
+    border-top: 1px solid #eee;
+}
+
+.login-name {
+    width: 80%;
+    padding: 15px 8px;
+    border: 0px;
+    font-size: 14px;
+}
+
+.login-password {
+    width: 80%;
+    padding: 15px 8px;
+    border: 0px;
+    font-size: 14px;
+}
+
+.login-action {
+    padding: 10px 8px 0px 8px;
+    line-height: 30px;
+}
+
+botton.submit {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+}
+
+.blue-bottom {
+    background-color: #0077d9;
+    border-radius: 3px;
+    line-height: 1;
 }

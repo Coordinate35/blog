@@ -7,6 +7,8 @@
     <title>Coordinate35: Beings</title>
 
     <link rel="stylesheet" id="blog-style-css" href="../css/blog.css" type="text/css">
+    <script type="text/javascript" src="../js/login_controller.js"></script>
+    <script type="text/javascript" src="../js/helper.js"></script>
 </head>
 
 <body>
@@ -19,9 +21,6 @@
             </div>
         </header>
         <div id="login-form">
-            <div id="login-form-title">
-                <h2>登陆</h2>
-            </div>
             <div id="login-form-body">
                 <div class="login-input">
                     <input type="text" name="name" class="login-name" aria-label="用户名" placeholder="用户名">
@@ -30,7 +29,7 @@
                     <input type="password" name="password" class="login-password" aria-label="密码" placeholder="密码">
                 </div>
                 <div class="login-input login-action">
-                    <botton class="submit blue-bottom">登陆</botton>
+                    <botton class="submit blue-bottom" onclick="login_controller.login()">登陆</botton>
                 </div>
             </div>
         </div>

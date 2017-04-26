@@ -16,7 +16,7 @@ if (!(send_http_request && typeof(send_http_request) == "function")) {
     function send_http_request(method, api, callback, params = {}) {
         var urlencode_params = array_to_urlencode(params);
         var body_string = "";
-        callback();
+
         var http = new XMLHttpRequest();
         method.toUpperCase();
         switch (method) {
@@ -27,14 +27,17 @@ if (!(send_http_request && typeof(send_http_request) == "function")) {
                 break;
             case "POST":
                 body_string = urlencode_params;
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 break;
             default:
                 return false;
         }
-        xmlhttp.onreadystatechange = function() {
-            if (4 == http.readyState && 200 == http.status) {
-                var response_data = http.responseText;
+        http.onreadystatechange = function() {
+            if (4 == http.readyState) {
+                var response = {
+                    "http_state_code": http.status,
+                    "data": http.responseText
+                }
                 callback(response_data);
             }
         }

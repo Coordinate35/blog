@@ -10,7 +10,7 @@ function loginViewController() {
 
     this.loginCallback = function(responseData) {
         switch (responseData.httpStateCode) {
-            case 200:
+            case HTTP_OK:
                 window.location.href(PAGE_ADD_ARTICLE);
                 break;
         }

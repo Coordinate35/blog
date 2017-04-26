@@ -44,6 +44,11 @@ var HTTP_METHOD_POST = 'POST';
 var HTTP_METHOD_GET = 'GET';
 
 /**
+ * HTTP reposne code const
+ */
+var HTTP_OK = 200;
+
+/**
  * API config
  */
 var API_ADMIN_VERSION_1 = 'v1/admin';
@@ -64,6 +69,7 @@ var REQ_BLOG_TYEP_GET_TAGS = 4;
  * Project number config
  */
 var DESCRIPTION_LINES = 10;
+var PAGE_ARTICLE_NUMBER = 10;
 
 /**
  * Project language const

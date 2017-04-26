@@ -28,7 +28,7 @@ function publishViewController() {
 
     this.publishCallback = function(responseData) {
         switch (responseData.httpStateCode) {
-            case 200:
+            case HTTP_OK:
                 alert(PUBLISH_ARTICLE_SUCCESS);
                 break;
         }

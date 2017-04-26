@@ -1,32 +1,32 @@
-if (!(array_to_urlencode && typeof(array_to_urlencode) == "function")) {
-    function dict_to_urlencode(params) {
-        var urlencode_params = "";
+if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
+    function dictToUrlencode(params) {
+        var urlencodeParams = "";
         for (key in params) {
-            if (0 == urlencode_params.length) {
-                urlencode_params += key + "=" + params[key];
+            if (0 == urlencodeParams.length) {
+                urlencodeParams += key + "=" + params[key];
             } else {
-                urlencode_params += "&&" + key + "=" + params[key];
+                urlencodeParams += "&&" + key + "=" + params[key];
             }
         }
-        return urlencode_params;
+        return urlencodeParams;
     }
 }
 
-if (!(send_http_request && typeof(send_http_request) == "function")) {
-    function send_http_request(method, api, callback, params = {}) {
-        var urlencode_params = dict_to_urlencode(params);
-        var body_string = "";
+if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
+    function sendHttpRequest(method, api, callback, params = {}) {
+        var urlencodeOarams = dictToUrlencode(params);
+        var bodyString = "";
 
         var http = new XMLHttpRequest();
         method.toUpperCase();
         switch (method) {
             case "GET":
-                if (0 == urlencode_params.length) {
-                    api += "?" + urlencode_params;
+                if (0 == urlencodeParams.length) {
+                    api += "?" + urlencodeParams;
                 }
                 break;
             case "POST":
-                body_string = urlencode_params;
+                bodyString = urlencodeParams;
                 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 break;
             default:
@@ -35,7 +35,7 @@ if (!(send_http_request && typeof(send_http_request) == "function")) {
         http.onreadystatechange = function() {
             if (4 == http.readyState) {
                 var response = {
-                    "http_state_code": http.status,
+                    "httpStateCode": http.status,
                     "data": http.responseText
                 }
                 callback(response_data);
@@ -43,6 +43,6 @@ if (!(send_http_request && typeof(send_http_request) == "function")) {
         }
 
         http.open(method, api, true);
-        http.send(body_string);
+        http.send(bodyString);
     }
 }

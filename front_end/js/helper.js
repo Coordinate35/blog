@@ -1,5 +1,5 @@
 if (!(array_to_urlencode && typeof(array_to_urlencode) == "function")) {
-    function array_to_urlencode(params) {
+    function dict_to_urlencode(params) {
         var urlencode_params = "";
         for (key in params) {
             if (0 == urlencode_params.length) {
@@ -14,7 +14,7 @@ if (!(array_to_urlencode && typeof(array_to_urlencode) == "function")) {
 
 if (!(send_http_request && typeof(send_http_request) == "function")) {
     function send_http_request(method, api, callback, params = {}) {
-        var urlencode_params = array_to_urlencode(params);
+        var urlencode_params = dict_to_urlencode(params);
         var body_string = "";
 
         var http = new XMLHttpRequest();

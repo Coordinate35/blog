@@ -8,8 +8,12 @@ function login_view_controller() {
         send_http_request(HTTP_METHOD_POST, API_ADMIN_VERSION_1, this.login_callback, request_data);
     }
 
-    this.login_callback = function(response_text) {
-        window.location.href(PAGE_ADD_ARTICLE);
+    this.login_callback = function(response_data) {
+        switch (response_data.http_state_code) {
+            case 200:
+                window.location.href(PAGE_ADD_ARTICLE);
+                break;
+        }
     }
 }
 

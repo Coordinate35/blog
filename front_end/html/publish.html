@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" id="blog-style-css" href="../css/blog.css" type="text/css">
     <link rel="stylesheet" href="../third_party/editor.md-master/css/editormd.min.css" />
+    <script type="text/javascript" src="../js/helper.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
 </head>
 
 <body>
@@ -19,11 +21,15 @@
                 </h1>
             </div>
         </header>
-        <div id="content">
-            <div class="editormd" id="editormd">
-                <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc">### Hello Editor.md !</textarea>
-                <textarea class="editormd-html-textarea" name="editormd-html-code"></textarea>
-            </div>
+        <div>
+            <input type="text" name="title" class="publish-input" aria-label="标题" placeholder="请在这里填写标题">
+        </div>
+        <div>
+            <input type="text" name="tags" class="publish-input" aria-label="标签" placeholder="标签,用|隔开">
+        </div>
+        <div class="editormd" id="editormd">
+            <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc">### Hello Editor.md !</textarea>
+            <textarea class="editormd-html-textarea" name="editormd-html-code"></textarea>
         </div>
         <script src="../third_party/jquery/jquery-3.2.1.min.js"></script>
         <script src="../third_party/editor.md-master/editormd.min.js"></script>

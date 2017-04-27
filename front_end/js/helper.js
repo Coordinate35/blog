@@ -1,3 +1,18 @@
+if (!(getQueryParams && typeof(getQueryParams) == "function")) {
+    function getQueryParams() {
+        var queryString = location.search;
+        queryString = queryString.substring(1, queryString.length);
+        var pairs = queryString.split("&");
+        var queryParams = {};
+        for (var i = 0; i < pairs.length; ++i) {
+            var keyValue = pairs[i].split("=");
+            queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+        }
+
+        return queryParams;
+    }
+}
+
 if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
     function dictToUrlencode(params) {
         var urlencodeParams = "";
@@ -8,6 +23,7 @@ if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
                 urlencodeParams += "&&" + key + "=" + params[key];
             }
         }
+
         return urlencodeParams;
     }
 }

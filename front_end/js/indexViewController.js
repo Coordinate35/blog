@@ -8,10 +8,10 @@ function indexViewController() {
         this.limit = PAGE_ARTICLE_NUMBER;
 
         this.setIndexLink();
-        this._getArticleAndRender();
+        this._getArticlesAndRender();
     }
 
-    this.getArticleCallback = function(resposneData) {
+    this.getArticlesCallback = function(resposneData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
                 this.offset += PAGE_ARTICLE_NUMBER;
@@ -21,13 +21,13 @@ function indexViewController() {
         }
     }
 
-    this._getArticleAndRender = function() {
+    this._getArticlesAndRender = function() {
         var request_params = {
             "limit": this.limit,
             "offset": this.offset,
             "type": REQ_BLOG_TYPE_GET_ARTICLES_BY_TIME
         };
-        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this.getArticleCallback, request_params);
+        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this.getArticlesCallback, request_params);
     }
 
     this._renderNewArticle = function(data) {

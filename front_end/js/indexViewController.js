@@ -1,11 +1,13 @@
 function indexViewController() {
     var offset;
     var limit;
+    controller.call(this);
 
-    this._contruct = function() {
+    this.contruct = function() {
         this.offset = 0;
         this.limit = PAGE_ARTICLE_NUMBER;
 
+        this.setIndexLink();
         this._getArticleAndRender();
     }
 
@@ -19,7 +21,7 @@ function indexViewController() {
         }
     }
 
-    this._getArticleAndRender() = function() {
+    this._getArticleAndRender = function() {
         var request_params = {
             "limit": this.limit,
             "offset": this.offset,
@@ -29,13 +31,15 @@ function indexViewController() {
     }
 
     this._renderNewArticle = function(data) {
-        var ArticleContainer = document.getElementById("content");
-        var articleData;
-        for (articleData in data) {
-
+        var articleContainer = document.getElementById("content");
+        var articleInfo;
+        for (articleInfo in data) {
+            var articleNode = new articleDom();
+            var articleDom = articleNode.construct(articleInfo);
+            articleContainer.appendChild(articleDom);
         }
     }
 }
 
 var indexViewController = new indexViewController();
-indexViewController._contruct();
+indexViewController.contruct();

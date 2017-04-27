@@ -1,4 +1,10 @@
 function loginViewController() {
+    controller.call(this);
+
+    this.construct = function() {
+        this.setIndexLink();
+    }
+
     this.login = function() {
         var requestData = {
             "user_name": document.getElementsByName('name').value,
@@ -18,3 +24,4 @@ function loginViewController() {
 }
 
 var loginViewController = new loginViewController();
+loginViewController.construct();

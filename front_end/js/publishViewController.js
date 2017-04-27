@@ -1,7 +1,10 @@
 function publishViewController() {
+    controller.call(this);
+
     var editor;
 
-    this._contruct = function() {
+    this.contruct = function() {
+        this.setIndexLink();
         this.editor = editormd("editormd", EDITOR_CONFIG);
     }
 
@@ -62,4 +65,4 @@ function publishViewController() {
 }
 
 var publishViewController = new publishViewController();
-publishViewController._contruct();
+publishViewController.contruct();

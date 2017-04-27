@@ -122,7 +122,7 @@ GET /v1/blog
       "article_id": "",
       "author_name": "",
       "title": "",
-      "discription": "",
+      "description": "",
       "publish_time": "",
       "tags": [
         {

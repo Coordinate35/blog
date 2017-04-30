@@ -32,6 +32,7 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
     function sendHttpRequest(method, api, callback, params = {}) {
         var urlencodeOarams = dictToUrlencode(params);
         var bodyString = "";
+        var REQUEST_COMPLETE = 4;
 
         var http = new XMLHttpRequest();
         method.toUpperCase();
@@ -49,12 +50,12 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
                 return false;
         }
         http.onreadystatechange = function() {
-            if (4 == http.readyState) {
+            if (REQUEST_COMPLETE == http.readyState) {
                 var response = {
                     "httpStateCode": http.status,
                     "data": http.responseText
                 }
-                callback(response_data);
+                callback(response);
             }
         }
 

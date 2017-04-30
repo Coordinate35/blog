@@ -1,7 +1,8 @@
 function indexViewController() {
+    controller.call(this);
+
     var offset;
     var limit;
-    controller.call(this);
 
     this.contruct = function() {
         this.offset = 0;
@@ -33,9 +34,12 @@ function indexViewController() {
     this._renderNewArticle = function(data) {
         var articleContainer = document.getElementById("content");
         var articleInfo;
-        for (articleInfo in data) {
+        for (var i = 0; i < data.length; ++i) {
+            articleInfo = data[i];
             var articleNode = new articleDom();
             var articleDom = articleNode.construct(articleInfo);
+            articleDom.setDescriptionBlock();
+            articleDom.setContentContainerNone();
             articleContainer.appendChild(articleDom);
         }
     }

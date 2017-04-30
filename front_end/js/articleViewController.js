@@ -20,7 +20,16 @@ function articleViewController() {
         sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this._getArticleCallback, request_params);
     }
 
-    this._getArticleCallback = function() {
+    this._getArticleCallback = function(responseData) {
+        switch (responseData.httpStateCode) {
+            case HTTP_OK:
+                var data = responseData.data;
+                this._render(data);
+                break;
+        }
+    }
+
+    this._render = function(data) {
 
     }
 }

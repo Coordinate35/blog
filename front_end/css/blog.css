@@ -21,7 +21,7 @@ botton:hover {
     margin-top: 100px;
     width: 300px;
     background-color: #fff;
-    border: 1px solid #eee;
+    /*border: 1px solid #eee;*/
 }
 
 #login-form-title {
@@ -71,11 +71,14 @@ botton:hover {
 
 botton.submit {
     display: block;
-    width: 100%;
     padding: 5px 0;
     line-height: 1;
     color: #fff;
     text-align: center;
+}
+
+.login-botton {
+    width: 100%;
 }
 
 .blue-bottom {
@@ -110,4 +113,64 @@ botton.submit {
 
 .comment-list {
     border-bottom: 1px solid #c8c8c8;
+}
+
+.required {
+    color: red;
+}
+
+#comment-content {
+    height: 5em;
+}
+
+.comment-label {
+    color: #c8c8c8;
+    margin-top: 4px;
+    width: 5em;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.comment-input-container {
+    margin-top: 10px;
+}
+
+.comment-input {
+    border-radius: 3px;
+    border: 1px solid #c8c8c8;
+    height: 20px;
+    padding: 3px;
+    font-size: 14px;
+    width: 15em;
+}
+
+.comment-textarea {
+    border-radius: 3px;
+    border: 1px solid #c8c8c8;
+    overflow: auto;
+    vertical-align: text-top;
+    width: 100%;
+    font-size: 14px;
+    /*height: 10em;*/
+}
+
+#comment-content-container {
+    margin-left: 0 auto;
+    position: relative;
+    width: 580px;
+    display: inline-block;
+}
+
+.comment-submit-botton {
+    width: 50px;
+    padding: 3px 0;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    background-color: #0077d9;
+    border-radius: 3px;
+    font-size: 14px;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-left: 6em;
 }

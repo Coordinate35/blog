@@ -45,6 +45,35 @@
                     <p><a class="comment-footer" href="#">2016年10月19日 00:04</a><span> / </span><a class="comment-footer" href="#">回复</a></p>
                 </div>
             </div>
+            <div id="comment-poster">
+                <div id="comment-targer">
+                    <p>回复给
+                        <a id="remarked-remarker" href="#">JohnSmith</a>
+                        <a id="cancel-remarker" href="#">取消回复</a>
+                    </p>
+                </div>
+                <div id="comment-content" class="comment-input-container">
+                    <label class="comment-label">评论<span class="required">*</span></label>
+                    <div id="comment-content-container">
+                        <textarea id="comment-content" name="comment-content" class="comment-textarea" cols="45" rows="8" aria-required="true"></textarea>
+                    </div>
+                </div>
+                <div id="comment-nickname" class="comment-input-container">
+                    <label class="comment-label">昵称<span class="required">*</span></label>
+                    <input type="text" name="comment-nickname" class="comment-input" />
+                </div>
+                <div id="comment-email" class="comment-input-container">
+                    <label class="comment-label">邮箱<span class="required">*</span></label>
+                    <input type="text" name="comment-email" class="comment-input" />
+                </div>
+                <div id="comment-website" class="comment-input-container">
+                    <label class="comment-label">网站</label>
+                    <input type="text" name="comment-website" class="comment-input" />
+                </div>
+                <div class="comment-input-container">
+                    <botton class="comment-submit-botton" onclick="articleViewController.postRemark()">提交</botton>
+                </div>
+            </div>
         </div>
     </div>
 </body>

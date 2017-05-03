@@ -57,8 +57,10 @@ class Admin extends MY_Controller {
         $this->response['identifier'] = $identifier;
         $this->response['token'] = $token;
 
-        setcookie('identifier', $identifier, COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
-        setcookie('token', $token, COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
+        $now = time();
+
+        setcookie('identifier', $identifier, $now + COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
+        setcookie('token', $token, $now + COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
 
         // $this->session->set_userdata('admin_id', $admin_info[0]['admin_id']);
 

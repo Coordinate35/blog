@@ -49,7 +49,7 @@ $config = array(
         array(
             'field' => 'description',
             'label' => 'Descirption',
-            'rules' => 'trim|required|max_length[500]'
+            'rules' => 'trim|required'
         ),
         array(
             'field' => 'content',

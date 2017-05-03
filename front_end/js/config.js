@@ -11,11 +11,11 @@ switch (ENV) {
         break;
     case "debug":
         API_DOMAIN = PROTOCOL + 'debug.api.coordinate35.cn/';
-        DOMAIN = PROTOCOL + "local.blog.coordinate35.cn/";
+        DOMAIN = PROTOCOL + "debug.blog.coordinate35.cn/";
         break;
     case "production":
         API_DOMAIN = PROTOCOL + 'api.coordinate35.cn/';
-        DOMAIN = PROTOCOL + "local.blog.coordinate35.cn/";
+        DOMAIN = PROTOCOL + "blog.coordinate35.cn/";
         break;
 }
 

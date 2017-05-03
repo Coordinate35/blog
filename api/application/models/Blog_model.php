@@ -122,7 +122,10 @@ class Blog_model extends MY_Model {
         $this->update($data, $condition);
 
         $this->db->trans_complete();
-        return $this->db->trans_status();
+        if (FALSE === $this->db->trans_status()) {
+            return FALSE;
+        }
+        return $root_remark_id;
     }
 
     public function add_node_remark($article_id, $father_id, $content, $email, $website, $nickname, $root_remark_id) {
@@ -137,7 +140,22 @@ class Blog_model extends MY_Model {
             'publish_time' => time()
         );
         $this->_table = TABLE_REMARK;
-        return $this->insert_entry($data);
+        if (FALSE === $this->insert_entry($data)) {
+            return FALSE;
+        }
+        return $this->db->insert_id();
+    }
+
+    public function get_comment_by_id($remark_id) {
+        $condition = array(
+            'remark_id' => $remark_id,
+            'available' => TRUE
+        );
+        $this->db->select('remark_id, content, email, nickname, website, father_id, root_remark_id, publish_time');
+        $this->db->from(TABLE_REMARK);
+        $this->db->where($condition);
+        $result = $this->db->get()->result_array();
+        return count($result) > 0 ? $result : FALSE;
     }
 
     public function get_comments_by_article_id($article_id) {
@@ -148,7 +166,7 @@ class Blog_model extends MY_Model {
         $this->db->select('remark_id, content, email, nickname, website, father_id, root_remark_id, publish_time');
         $this->db->from(TABLE_REMARK);
         $this->db->where($condition);
-        $this->db->order_by('root_remark_id ASC, publish_time DESC');
+        $this->db->order_by('publish_time ASC, root_remark_id ASC');
         $result = $this->db->get()->result_array();
         return $result;
     }

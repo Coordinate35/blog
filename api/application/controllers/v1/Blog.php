@@ -63,16 +63,28 @@ class Blog extends MY_Controller {
             if (FALSE === $father_info) {
                 $this->make_bad_request_response();
             }
-            if (FALSE === $this->blog->add_root_remark($article_id, $father_id, $content, $email, $website, $nickname)) {
+            $remark_id = $this->blog->add_node_remark($article_id, $father_id, $content, $email, $website, $nickname, $father_info[0]['root_remark_id']);
+            if (FALSE === $remark_id) {
                 $this->make_internal_server_error_response();
             }
         } else {
-            if (FALSE === $this->blog->add_node_remark($article_id, $father_id, $content, $email, $website, $nickname, $father_info['root_remark_id'])) {
+            $remark_id = $this->blog->add_root_remark($article_id, $father_id, $content, $email, $website, $nickname);
+            if (FALSE === $remark_id) {
                 $this->make_internal_server_error_response();
             }
         } 
+        $father_author = isset($father_info) ? $father_info[0]['nickname'] : "";
+        $this->response = array(
+            "remark_id" => $remark_id,
+            "content" => $content,
+            "nickname" => $nickname,
+            "website" => $website,
+            "father_id" => $father_id,
+            "father_author" => $father_author,
+            "publish_time" => date('Y-m-d H:i:s')
+        );
 
-        api_output($this->response, HTTP_NO_CONTENT);
+        api_output($this->response, HTTP_OK);
     }
 
     private function _get_article_by_id() {

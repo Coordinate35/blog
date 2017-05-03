@@ -96,7 +96,21 @@ POST /v1/blog
 
 成功时返回
 
-状态码 204
+状态码 200
+
+```json
+{
+    "remark_id": 2,
+    "content": "aa嗷嗷",
+    "nickname": "dsf",
+    "website": "sddd.c",
+    "father_id": "0",
+    "father_author": "",
+    "publish_time": 1493830678
+}
+```
+
+
 
 ## 按时间顺序获取博文列表接口
 

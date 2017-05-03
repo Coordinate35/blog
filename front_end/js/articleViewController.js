@@ -95,7 +95,7 @@ function ArticleViewController() {
     this.postRemarkCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
-                var data = responseData.data;
+                var data = eval('(' + responseData.data + ')');
                 this._appendComment(data);
                 this._clearInput();
                 break;
@@ -107,7 +107,7 @@ function ArticleViewController() {
         var remarkerNickname = document.getElementById("comment-nickname-input");
         var remarkerWebsite = document.getElementById("comment-website-input");
         var remarkerEmail = document.getElementById("comment-email-input");
-        remarkContent.innerText = "";
+        remarkContent.value = "";
         remarkerNickname.value = "";
         remarkerWebsite.value = "";
         remarkerEmail.value = "";

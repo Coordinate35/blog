@@ -75,3 +75,5 @@ var PAGE_ARTICLE_NUMBER = 10;
  * Project language const
  */
 var PUBLISH_ARTICLE_SUCCESS = "发布博文成功";
+var DUFAULT_REPLY_HEADER = "发表评论";
+var TARGETED_REPLY_HEADER = "回复给";

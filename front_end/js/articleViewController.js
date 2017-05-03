@@ -2,6 +2,12 @@ function articleViewController() {
     controller.call(this);
 
     var articleId;
+    var remarkedRemarkerId = 0;
+    var remarkedRemarkerName = "";
+    var remarkContent;
+    var remarkerEmail;
+    var remarkerNickname;
+    var remarkerWebsite;
 
     this.construct = function() {
         this.setIndexLink();
@@ -13,11 +19,11 @@ function articleViewController() {
     }
 
     this._getArticleAndRender = function() {
-        var request_params = {
+        var requestParams = {
             "type": REQ_BLOG_TYPE_GET_ARTICLE_BY_ID,
             "article_id": this.articleId
         };
-        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this._getArticleCallback, request_params);
+        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this._getArticleCallback, requestParams);
     }
 
     this._getArticleCallback = function(responseData) {
@@ -59,6 +65,98 @@ function articleViewController() {
             var remarkDom = remarkNode.construct(remarkList[i]);
             remarkContainer.appendChild(remarkDom);
         }
+    }
+
+    this.postRemark = function() {
+        this.remarkContent = document.getElementById("comment-content-textarea").innerText;
+        this.remarkerNickname = document.getElementById("comment-nickname-input").value;
+        this.remarkerWebsite = document.getElementById("comment-website-input").value;
+        this.remarkerEmail = document.getElementById("comment-email-input").value;
+
+        var requestParams = {
+            "father_id": this.remarkedRemarkerId,
+            "content": this.remarkContent,
+            "nickname": this.remarkerNickname,
+            "email": this.remarkerEmail,
+            "website": this.remarkerWebsite,
+            "type": REQ_BLOG_TYPE_COMMENT,
+            "article_id": this.articleId
+        };
+        sendHttpRequest(HTTP_METHOD_POST, API_BLOG_VERSION_1, this._postRemarkCallback, requestParams);
+    }
+
+    this._postRemarkCallback = function(responseData) {
+        switch (responseData.httpStateCode) {
+            case HTTP_OK:
+                var data = responseData.data;
+                this._appendComment(data);
+                this._clearInput();
+                break;
+        }
+    }
+
+    this._clearInput = function() {
+        var remarkContent = document.getElementById("comment-content-textarea");
+        var remarkerNickname = document.getElementById("comment-nickname-input");
+        var remarkerWebsite = document.getElementById("comment-website-input");
+        var remarkerEmail = document.getElementById("comment-email-input");
+        remarkContent.innerText = "";
+        remarkerNickname.value = "";
+        remarkerWebsite.value = "";
+        remarkerEmail.value = "";
+    }
+
+    this._appendComment = function(data) {
+        var remarkList = [data];
+        this._renderRemark(remarkList);
+    }
+
+    this.setRemarkedRemarker = function(remarkedRemarkerId, remarkedRemarkerName) {
+        this.remarkedRemarkerId = remarkedRemarkerId;
+        this.remarkedRemarkerName = remarkedRemarkerName;
+        this._updateRemarkedRemarker();
+        this._displayTargetedCommentHeader();
+    }
+
+    this.unsetRemarkedRemarker = function() {
+        this.remarkedRemarkerId = 0;
+        this.remarkedRemarkerName = "";
+        this._displayDefaultCommentHeader();
+    }
+
+    this._updateRemarkedRemarker = function() {
+        var remarkedRemarkerArchor = document.getElementById("remarked-remarker");
+        remarkedRemarkerArchor.innerText = this.remarkedRemarkerName;
+    }
+
+    this._displayDefaultCommentHeader = function() {
+        this._setTargetedCommentHeaderNone();
+        this._setDefaultCommentHeaderBlock();
+    }
+
+    this._displayTargetedCommentHeader = function() {
+        this._setTargetedCommentHeaderBlock();
+        this._setDefaultCommentHeaderNone()
+    }
+
+    this._setDefaultCommentHeaderNone = function() {
+        var container = document.getElementById("comment-default-container");
+        container.style.display = "none";
+    }
+
+    this._setDefaultCommentHeaderBlock = function() {
+        var container = document.getElementById("comment-default-container");
+        container.style.display = "block";
+    }
+
+    this._setTargetedCommentHeaderNone = function() {
+        var container = document.getElementById("comment-targeted-container");
+        container.style.display = "none";
+    }
+
+    this._setTargedCommentHeaderBlock = function() {
+        var container = document.getElementById("comment-targeted-container");
+        container.style.display = "block";
     }
 }
 

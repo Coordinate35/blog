@@ -103,13 +103,13 @@ function RemarkRemarker() {
     var remarkFatherId;
     var remarkedRemarkerName;
     var remarkerWebsite;
-    var ROOT_REMARKER_FATHER_ID = 0;
+    var ROOT_REMARKER_FATHER_ID;
 
     var remarkNode;
     var remarkerNode;
     var replyContainer;
     var remarkedRemarkerNode;
-    var remarkerWebsiteArcher;
+    var remarkerWebsiteArchor;
 
     this.construct = function(remarkId, remarkerName, remarkFatherId = ROOT_REMARKER_FATHER_ID, remarkedRemarkerName = "", remarkerWebsite = "") {
         this.remarkId = remarkId;
@@ -117,6 +117,7 @@ function RemarkRemarker() {
         this.remarkFatherId = remarkFatherId;
         this.remarkedRemarkerName = remarkedRemarkerName;
         this.remarkerWebsite = remarkerWebsite;
+        this.ROOT_REMARKER_FATHER_ID = 0;
 
         this._create();
         this.update();
@@ -125,7 +126,7 @@ function RemarkRemarker() {
     }
 
     this.hasRemarkedRemarker = function() {
-        if (this.ROOT_REMARKER_FATHER_ID == this.remarkedRemarkerId) {
+        if (this.ROOT_REMARKER_FATHER_ID == this.remarkFatherId) {
             return false;
         }
         return true;
@@ -141,7 +142,7 @@ function RemarkRemarker() {
         this.remarkerNode = document.createElement("cite");
         this.replyContainer = document.createElement("span");
         this.remarkedRemarkerNode = document.createElement("cite");
-        this.remarkerWebsite = document.createElement("a");
+        this.remarkerWebsiteArchor = document.createElement("a");
         var replyStringNode = document.createElement("span");
         // var colon = document.createElement("span");
         replyStringNode.innerText = "回复";
@@ -157,18 +158,19 @@ function RemarkRemarker() {
     this._setProperties = function() {
         this.remarkedRemarkerNode.className = "comment-commentor";
         this.remarkerNode.className = "comment-commentor";
+        this.remarkerWebsiteArchor.className = "commenter-archor";
     }
 
     this.update = function() {
         if (this.remarkerWebsite && this.remarkerWebsite.length > 0) {
-            this.remarkerNode.appendChild(this.remarkerWebsiteArcher);
-            this.remarkerWebsiteArcher.href = this.remarkerWebsite;
-            this.remarkerWebsiteArcher.innerText = this.remarkerName;
+            this.remarkerNode.appendChild(this.remarkerWebsiteArchor);
+            this.remarkerWebsiteArchor.href = this.remarkerWebsite;
+            this.remarkerWebsiteArchor.innerText = this.remarkerName;
         } else {
             this.remarkerNode.innerText = this.remarkerName;
         }
         this.remarkedRemarkerNode.innerText = this.remarkedRemarkerName;
-        if (this.ROOT_REMARKER_FATHER_ID == this.remarkedRemarkerId) {
+        if (this.ROOT_REMARKER_FATHER_ID == this.remarkFatherId) {
             this.replyContainer.style = "display:none";
         }
     }
@@ -196,7 +198,7 @@ function Remark() {
         this.remarker = new RemarkRemarker();
         this.content = new RemarkContent();
         this.footer = new RemarkFooter();
-        var remarkDom = this.remarker.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.father_id, remarkInfo.father_author);
+        var remarkDom = this.remarker.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.father_id, remarkInfo.father_nickname, remarkInfo.website);
         var contentDom = this.content.construct(remarkInfo.content);
         var footDom = this.footer.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.publish_time);
         this.remarkNode.appendChild(remarkDom);

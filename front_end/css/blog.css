@@ -98,7 +98,8 @@ botton.submit {
 
 .comment-commentor {
     font-weight: bold;
-    /*font-size: 14px;*/
+    font-style: normal;
+    font-size: 14px;
 }
 
 .comment-footer {
@@ -186,4 +187,17 @@ botton.submit {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-size: 14px;
+}
+
+.commenter-archor {
+    font-size: 14px;
+    margin-left: 1px;
+    margin-right: 1px;
+    text-decoration: none;
+    color: #0077d9;
+    font-style: normal;
+}
+
+.commenter-archor:hover {
+    color: #009bdf;
 }

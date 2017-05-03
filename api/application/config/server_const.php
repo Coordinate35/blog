@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-const LOGIN_TIMEOUT = 18000;
+const LOGIN_TIMEOUT = 54000;
 
 const ALLOW_REGISTER = TRUE;
-const COOKIE_EXPIRED_TIME = 18000;
+const COOKIE_EXPIRED_TIME = 54000;
 const COOKIE_DOMAIN = 'coordinate35.cn';
 
 switch (ENVIRONMENT) {

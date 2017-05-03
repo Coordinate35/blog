@@ -37,6 +37,11 @@ botton:hover {
 
 .article-title {
     color: #333;
+    text-decoration: none;
+}
+
+.article-title:hover {
+    color: #009bdf;
 }
 
 .login-input {
@@ -93,12 +98,13 @@ botton.submit {
 
 .comment-commentor {
     font-weight: bold;
-    /*font-size: 20px;*/
+    /*font-size: 14px;*/
 }
 
 .comment-footer {
     color: #c8c8c8;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .comment-footer:visited {
@@ -112,6 +118,7 @@ botton.submit {
 }
 
 .comment-list {
+    margin-top: 0.5em;
     border-bottom: 1px solid #c8c8c8;
 }
 
@@ -173,4 +180,10 @@ botton.submit {
     padding-left: 2em;
     padding-right: 2em;
     margin-left: 6em;
+}
+
+.comment-paragraph {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 14px;
 }

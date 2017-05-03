@@ -52,17 +52,17 @@
                 </div>-->
             </div>
             <div id="comment-poster">
-                <div id="comment-targered-container" style="display:none">
+                <div id="comment-targeted-container" style="display:none">
                     <p>
                         <span>回复给</span>
                         <span>
                             <a id="remarked-remarker" href="#"></a>
-                            <a id="cancel-remarker" href="#">取消回复</a>
+                            <a id="cancel-remarker" href="#" onclick="articleViewController.unsetRemarkedRemarker()">取消回复</a>
                         </span>
                     </p>
                 </div>
                 <div id="comment-default-container">
-                    <p>发表评论</p>
+                    <p><a name="comment-block">发表评论</a></p>
                 </div>
                 <div id="comment-content" class="comment-input-container">
                     <label class="comment-label">评论<span class="required">*</span></label>

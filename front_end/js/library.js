@@ -13,9 +13,13 @@ function RemarkFooter() {
     var dateArchor;
     var splitNode;
     var replyArchor;
+    var remarkId;
+    var remarkerName;
 
-    this.construct = function(publishTime) {
+    this.construct = function(remarkId, remarkerName, publishTime) {
         this.publishTime = publishTime;
+        this.remarkId = remarkId;
+        this.remarkerName = remarkerName;
 
         this._create();
         this.update();
@@ -43,12 +47,24 @@ function RemarkFooter() {
 
     this._setProperties = function() {
         this.dateArchor.className = this.replyArchor.className = "comment-footer";
+        this.footContainer.className = "comment-paragraph";
     }
 
     this.update = function() {
         this.dateArchor.innerText = this.publishTime;
         this.dateArchor.href = "#";
-        this.replyArchor.href = "#";
+        this.replyArchor.href = "#comment-block";
+    }
+
+    // this.setReplyOnclickFunction = function(replyOnclickFunction) {
+    //     this.replyArchor.onclick = function() {
+    //         console.log(this.remarkerName);
+    //         replyOnclickFunction(this.remarkId, this.remarkerName);
+    //     }
+    // }
+
+    this.getReplyArchor = function() {
+        return this.replyArchor;
     }
 }
 
@@ -56,6 +72,7 @@ function RemarkContent() {
 
     var remarkContent;
     var remarkContentNode;
+    var remarkContentParagraph
 
     this.construct = function(content) {
         this.remarkContent = content;
@@ -68,10 +85,14 @@ function RemarkContent() {
 
     this._create = function() {
         this.remarkContentNode = document.createElement("div");
+        this.remarkContentParagraph = document.createElement("p");
+        this.remarkContentNode.appendChild(this.remarkContentParagraph);
+
+        this.remarkContentParagraph.className = "comment-paragraph";
     }
 
     this.update = function() {
-        this.remarkContentNode.innerHTML = this.remarkContent;
+        this.remarkContentParagraph.innerHTML = this.remarkContent;
     }
 }
 
@@ -177,7 +198,7 @@ function Remark() {
         this.footer = new RemarkFooter();
         var remarkDom = this.remarker.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.father_id, remarkInfo.father_author);
         var contentDom = this.content.construct(remarkInfo.content);
-        var footDom = this.footer.construct(remarkInfo.publish_time);
+        var footDom = this.footer.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.publish_time);
         this.remarkNode.appendChild(remarkDom);
         this.remarkNode.appendChild(contentDom);
         this.remarkNode.appendChild(footDom);
@@ -186,6 +207,15 @@ function Remark() {
     this._setProperties = function(remarkId) {
         this.remarkNode.className = "comment-list";
         this.remarkNode.id = "comment-" + remarkId;
+    }
+
+    // this.setReplyOnclickFunction = function(replyOnclickFunction) {
+    //     this.footer.setReplyOnclickFunction(replyOnclickFunction);
+    // }
+
+    this.getReplyArchor = function() {
+        var replyArchor = this.footer.getReplyArchor();
+        return replyArchor;
     }
 }
 

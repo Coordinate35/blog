@@ -65,6 +65,15 @@ function ArticleViewController() {
         for (var i = 0; i < remarkList.length; ++i) {
             var remarkNode = new Remark();
             var remarkDom = remarkNode.construct(remarkList[i]);
+            // remarkNode.setReplyOnclickFunction(this.setRemarkedRemarker.bind(this));
+            var replyArchor = remarkNode.getReplyArchor();
+            replyArchor.onclick = (function() {
+                var index = i;
+                var controller = arguments[1];
+                return function() {
+                    controller.setRemarkedRemarker(remarkList[index].remark_id, remarkList[index].nickname);
+                };
+            })(i, this);
             remarkContainer.appendChild(remarkDom);
         }
     }
@@ -161,7 +170,7 @@ function ArticleViewController() {
         container.style.display = "none";
     }
 
-    this._setTargedCommentHeaderBlock = function() {
+    this._setTargetedCommentHeaderBlock = function() {
         var container = document.getElementById("comment-targeted-container");
         container.style.display = "block";
     }

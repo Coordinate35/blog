@@ -1,5 +1,5 @@
-function indexViewController() {
-    controller.call(this);
+function IndexViewController() {
+    Controller.call(this);
 
     var offset;
     var limit;
@@ -12,7 +12,7 @@ function indexViewController() {
         this._getArticlesAndRender();
     }
 
-    this.getArticlesCallback = function(resposneData) {
+    this.getArticlesCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
                 this.offset += PAGE_ARTICLE_NUMBER;
@@ -23,12 +23,12 @@ function indexViewController() {
     }
 
     this._getArticlesAndRender = function() {
-        var request_params = {
+        var requestParams = {
             "limit": this.limit,
             "offset": this.offset,
             "type": REQ_BLOG_TYPE_GET_ARTICLES_BY_TIME
         };
-        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this.getArticlesCallback, request_params);
+        sendHttpRequest(HTTP_METHOD_GET, DOMAIN, API_BLOG_VERSION_1, this.getArticlesCallback.bind(this), requestParams);
     }
 
     this._renderNewArticle = function(data) {
@@ -36,14 +36,14 @@ function indexViewController() {
         var articleInfo;
         for (var i = 0; i < data.length; ++i) {
             articleInfo = data[i];
-            var articleNode = new articleDom();
+            var articleNode = new ArticleDom();
             var articleDom = articleNode.construct(articleInfo);
-            articleDom.setDescriptionBlock();
-            articleDom.setContentContainerNone();
+            articleNode.setDescriptionBlock();
+            articleNode.setContentContainerNone();
             articleContainer.appendChild(articleDom);
         }
     }
 }
 
-var indexViewController = new indexViewController();
+var indexViewController = new IndexViewController();
 indexViewController.contruct();

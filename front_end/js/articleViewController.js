@@ -1,5 +1,5 @@
-function articleViewController() {
-    controller.call(this);
+function ArticleViewController() {
+    Controller.call(this);
 
     var articleId;
     var remarkedRemarkerId = 0;
@@ -23,10 +23,10 @@ function articleViewController() {
             "type": REQ_BLOG_TYPE_GET_ARTICLE_BY_ID,
             "article_id": this.articleId
         };
-        sendHttpRequest(HTTP_METHOD_GET, API_BLOG_VERSION_1, this._getArticleCallback, requestParams);
+        sendHttpRequest(HTTP_METHOD_GET, DOMAIN, API_BLOG_VERSION_1, this.getArticleCallback.bind(this), requestParams);
     }
 
-    this._getArticleCallback = function(responseData) {
+    this.getArticleCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
                 var data = responseData.data;
@@ -51,7 +51,7 @@ function articleViewController() {
 
     this._renderArticle = function(articleInfo) {
         var articleContainer = document.getElementById("article");
-        var articleNode = new articleDom();
+        var articleNode = new ArticleDom();
         var articleDom = articleNode.construct(data);
         articleDom.setDescriptionNone();
         articleDom.setContentContainerBlock();
@@ -61,7 +61,7 @@ function articleViewController() {
     this._renderRemark = function(remarkList) {
         var remarkContainer = document.getElementById("comment");
         for (var i = 0; i < remarkList.length; ++i) {
-            var remarkNode = new remark();
+            var remarkNode = new Remark();
             var remarkDom = remarkNode.construct(remarkList[i]);
             remarkContainer.appendChild(remarkDom);
         }
@@ -82,10 +82,10 @@ function articleViewController() {
             "type": REQ_BLOG_TYPE_COMMENT,
             "article_id": this.articleId
         };
-        sendHttpRequest(HTTP_METHOD_POST, API_BLOG_VERSION_1, this._postRemarkCallback, requestParams);
+        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_BLOG_VERSION_1, this.postRemarkCallback.bind(this), requestParams);
     }
 
-    this._postRemarkCallback = function(responseData) {
+    this.postRemarkCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
                 var data = responseData.data;
@@ -160,5 +160,5 @@ function articleViewController() {
     }
 }
 
-var articleViewController = new articleViewController();
+var articleViewController = new ArticleViewController();
 articleViewController.construct();

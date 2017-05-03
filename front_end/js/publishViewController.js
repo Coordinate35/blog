@@ -1,5 +1,5 @@
-function publishViewController() {
-    controller.call(this);
+function PublishViewController() {
+    Controller.call(this);
 
     var editor;
 
@@ -26,7 +26,7 @@ function publishViewController() {
             "tags": tags,
             "type": REQ_BLOG_TYPE_ISSUE
         };
-        sendHttpRequest(HTTP_METHOD_POST, API_BLOG_VERSION_1, this.publishCallback, requestData);
+        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_BLOG_VERSION_1, this.publishCallback.bind(this), requestData);
     }
 
     this.publishCallback = function(responseData) {
@@ -64,5 +64,5 @@ function publishViewController() {
     }
 }
 
-var publishViewController = new publishViewController();
+var publishViewController = new PublishViewController();
 publishViewController.contruct();

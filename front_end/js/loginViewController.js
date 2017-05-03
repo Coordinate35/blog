@@ -1,5 +1,5 @@
-function loginViewController() {
-    controller.call(this);
+function LoginViewController() {
+    Controller.call(this);
 
     this.construct = function() {
         this.setIndexLink();
@@ -11,7 +11,7 @@ function loginViewController() {
             "password": document.getElementsByName('password').value,
             "type": REQ_ADMIN_TYPE_LOGIN
         };
-        sendHttpRequest(HTTP_METHOD_POST, API_ADMIN_VERSION_1, this.login_callback, request_data);
+        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_ADMIN_VERSION_1, this.loginCallback.bind(this), request_data);
     }
 
     this.loginCallback = function(responseData) {
@@ -23,5 +23,5 @@ function loginViewController() {
     }
 }
 
-var loginViewController = new loginViewController();
+var loginViewController = new LoginViewController();
 loginViewController.construct();

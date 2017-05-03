@@ -29,8 +29,8 @@ if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
 }
 
 if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
-    function sendHttpRequest(method, api, callback, params = {}) {
-        var urlencodeOarams = dictToUrlencode(params);
+    function sendHttpRequest(method, host, api, callback, params = {}) {
+        var urlencodeParams = dictToUrlencode(params);
         var bodyString = "";
         var REQUEST_COMPLETE = 4;
 
@@ -38,7 +38,7 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
         method.toUpperCase();
         switch (method) {
             case "GET":
-                if (0 == urlencodeParams.length) {
+                if (0 != urlencodeParams.length) {
                     api += "?" + urlencodeParams;
                 }
                 break;
@@ -59,7 +59,8 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
             }
         }
 
-        http.open(method, api, true);
+        var resquestUrl = host + api;
+        http.open(method, resquestUrl, true);
         http.send(bodyString);
     }
 }

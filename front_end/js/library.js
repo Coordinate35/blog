@@ -1,4 +1,4 @@
-function controller() {
+function Controller() {
 
     this.setIndexLink = function() {
         var a = document.getElementById("index");
@@ -6,7 +6,7 @@ function controller() {
     }
 }
 
-function remarkFooter() {
+function RemarkFooter() {
 
     var publishTime;
     var footContainer;
@@ -52,7 +52,7 @@ function remarkFooter() {
     }
 }
 
-function remarkContent() {
+function RemarkContent() {
 
     var remarkContent;
     var remarkContentNode;
@@ -75,7 +75,7 @@ function remarkContent() {
     }
 }
 
-function remarkRemarker() {
+function RemarkRemarker() {
 
     var remarkId;
     var remarkerName;
@@ -152,7 +152,7 @@ function remarkRemarker() {
     }
 }
 
-function remark() {
+function Remark() {
 
     var remarker;
     var content;
@@ -171,9 +171,9 @@ function remark() {
 
     this._buildDomTree = function(remarkInfo) {
         this.remarkNode = document.createElement("div");
-        this.remarker = new remarkRemarker();
-        this.content = new remarkContent();
-        this.footer = new remarkFooter();
+        this.remarker = new RemarkRemarker();
+        this.content = new RemarkContent();
+        this.footer = new RemarkFooter();
         var remarkDom = this.remarker.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.father_id, remarkInfo.father_author);
         var contentDom = this.content.construct(remarkInfo.content);
         var footDom = this.footer.construct(remarkInfo.publish_time);
@@ -188,7 +188,7 @@ function remark() {
     }
 }
 
-function articleDom() {
+function ArticleDom() {
 
     var articleId;
     var authorName;
@@ -197,12 +197,12 @@ function articleDom() {
     var content;
     var publishTime;
     var tags;
-    var articlePropertyList = ["articleId", "authorName", "title", "description", "publishTime", "tags", "content"];
+    var articlePropertyList;
     var headerNode;
     var titleContainer;
     var titleAnchor;
     var publishTimeContainer;
-    var publishTime;
+    var publishTimeNode;
     var descriptionContainer;
     var contentContainer;
     var articleNode;
@@ -211,10 +211,19 @@ function articleDom() {
         var i;
         var key;
 
+        this.articlePropertyList = {
+            "articleId": "article_id",
+            "authorName": "author_name",
+            "title": "title",
+            "description": "description",
+            "publishTime": "publish_time",
+            "tags": "tags",
+            "content": "content"
+        };
         for (i in this.articlePropertyList) {
             key = this.articlePropertyList[i];
             if (articleInfo[key]) {
-                this[key] = articleInfo[key];
+                this[i] = articleInfo[key];
             }
         }
 
@@ -229,29 +238,29 @@ function articleDom() {
         this.titleContainer = document.createElement("h2");
         this.titleAnchor = document.createElement("a");
         this.publishTimeContainer = document.createElement("div");
-        this.publishTime = document.createElement('time');
+        this.publishTimeNode = document.createElement('time');
         this.descriptionContainer = document.createElement("div");
         this.contentContainer = document.createElement("div");
 
-        this.articleNode.appendChild(headerNode);
-        this.headerNode.appendChild(titleContainer);
-        this.titleContainer.appendChild(titleAnchor);
-        this.articleNode.appendChild(publishTimeContainer);
-        this.publishTimeContainer.appendChild(publishTime);
-        this.articleNode.appendChild(descriptionContainer);
-        this.articleNode.appendChild(contentContainer);
+        this.articleNode.appendChild(this.headerNode);
+        this.headerNode.appendChild(this.titleContainer);
+        this.titleContainer.appendChild(this.titleAnchor);
+        this.articleNode.appendChild(this.publishTimeContainer);
+        this.publishTimeContainer.appendChild(this.publishTimeNode);
+        this.articleNode.appendChild(this.descriptionContainer);
+        this.articleNode.appendChild(this.contentContainer);
     }
 
     this.update = function() {
         this.articleNode.id = "article-" + this.articleId;
         this.titleAnchor.className = "article-title";
-        this.titleAnchor.href = DOMAIN + API_BLOG_VERSION_1 + "?type=" + REQ_BLOG_TYPE_GET_ARTICLE_BY_ID + "&article_id" + this.articleId;
+        this.titleAnchor.href = DOMAIN + API_BLOG_VERSION_1 + "?type=" + REQ_BLOG_TYPE_GET_ARTICLE_BY_ID + "&article_id=" + this.articleId;
         this.titleAnchor.innerText = this.title;
 
         this.publishTimeContainer.className = "article-meta";
 
-        this.publishTime.className = "publish-time";
-        this.publishTime.innerText = this.publishTime;
+        this.publishTimeNode.className = "publish-time";
+        this.publishTimeNode.innerText = this.publishTime;
 
         this.descriptionContainer.className = "article-introduction";
         this.descriptionContainer.innerHTML = this.description;

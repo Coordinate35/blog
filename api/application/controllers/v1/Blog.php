@@ -84,7 +84,7 @@ class Blog extends MY_Controller {
             $this->make_bad_request_response();
         }
 
-        $article_id = $this->input->post($article_id, TRUE);
+        $article_id = $this->input->get("article_id", TRUE);
 
         $article_info = $this->blog->get_article_by_id($article_id);
         if (FALSE === $article_info) {
@@ -99,6 +99,9 @@ class Blog extends MY_Controller {
             $this->make_internal_server_error_response();
         }
         $admin = $this->admin->get_admin_by_id($article_info[0]['author_id']);
+         if (FALSE === $admin) {
+            $this->make_internal_server_error_response();
+        }
         $this->response = array(
             'article_id' => $article_info[0]['article_id'],
             'author_name' => $admin[0]['name'],
@@ -109,16 +112,14 @@ class Blog extends MY_Controller {
             'remarks' => array()
         );
         foreach ($comments as $key => $comment) {
-            if (FALSE === $comment_info) {
-                $this->make_internal_server_error_response();
-            }
+            $father_nickname = $this->_get_comment_father_nickname($comments, $comments[$key]['father_id']);
             $this->response['remarks'][$key] = array(
                 'remark_id' => $comments[$key]['remark_id'],
                 'content' => $comments[$key]['content'],
                 'nickname' => $comments[$key]['nickname'],
                 'website' => $comments[$key]['website'],
                 'father_id' => $comments[$key]['father_id'],
-                'father_nickname' => $this->_get_comment_father_nickname($comments, $commnets[$key]['father_id']),
+                'father_nickname' => $father_nickname,
                 'publish_time' => date('Y-m-d H:i:s', $comments[$key]['publish_time'])
             );
         }
@@ -126,12 +127,12 @@ class Blog extends MY_Controller {
     }
 
     private function _get_comment_father_nickname($comments, $father_id) {
-        foreach ($comments as $key => $comments) {
+        foreach ($comments as $key => $comment) {
             if ($father_id == $comment['remark_id']) {
                 return $comment['nickname'];
             }
         }
-        return FALSE;
+        return NULL;
     }
 
     private function _get_article_list_by_tag_order_by_time() {

@@ -20,7 +20,7 @@ if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
             if (0 == urlencodeParams.length) {
                 urlencodeParams += key + "=" + params[key];
             } else {
-                urlencodeParams += "&&" + key + "=" + params[key];
+                urlencodeParams += "&" + key + "=" + params[key];
             }
         }
 

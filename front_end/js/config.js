@@ -2,19 +2,20 @@
  * Environment config
  */
 var ENV = "dev"; // dev, debug, production
+var PROTOCOL = "http://";
 
 switch (ENV) {
     case "dev":
-        API_DOMAIN = 'http://local.api.coordinate35.cn/';
-        DOMAIN = "http://local.blog.coordinate35.cn/";
+        API_DOMAIN = PROTOCOL + 'local.api.coordinate35.cn/';
+        DOMAIN = PROTOCOL + "local.blog.coordinate35.cn/";
         break;
     case "debug":
-        API_DOMAIN = 'http://debug.api.coordinate35.cn/';
-        DOMAIN = "http://local.blog.coordinate35.cn/";
+        API_DOMAIN = PROTOCOL + 'debug.api.coordinate35.cn/';
+        DOMAIN = PROTOCOL + "local.blog.coordinate35.cn/";
         break;
     case "production":
-        API_DOMAIN = 'http://api.coordinate35.cn/';
-        DOMAIN = "http://local.blog.coordinate35.cn/";
+        API_DOMAIN = PROTOCOL + 'api.coordinate35.cn/';
+        DOMAIN = PROTOCOL + "local.blog.coordinate35.cn/";
         break;
 }
 
@@ -28,6 +29,7 @@ var MD5_LIB_PATH = THIRD_PARTY_LIB_ROOT + "md5/";
 
 
 var PAGE_ADD_ARTICLE = HTML_ROOT + "publish.html";
+var PAGE_ARTICLE = HTML_ROOT + "article.html";
 
 /**
  * editor.md config

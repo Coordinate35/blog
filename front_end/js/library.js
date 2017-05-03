@@ -14,7 +14,7 @@ function RemarkFooter() {
     var splitNode;
     var replyArchor;
 
-    this.contruct = function(publishTime) {
+    this.construct = function(publishTime) {
         this.publishTime = publishTime;
 
         this._create();
@@ -28,7 +28,7 @@ function RemarkFooter() {
         this._setProperties();
     }
 
-    this._buildDomTree() = function() {
+    this._buildDomTree = function() {
         this.footContainer = document.createElement("p");
         this.dateArchor = document.createElement("a");
         this.splitNode = document.createElement("span");
@@ -57,7 +57,7 @@ function RemarkContent() {
     var remarkContent;
     var remarkContentNode;
 
-    this.contruct = function(content) {
+    this.construct = function(content) {
         this.remarkContent = content;
 
         this._create();
@@ -122,19 +122,20 @@ function RemarkRemarker() {
         this.remarkedRemarkerNode = document.createElement("cite");
         this.remarkerWebsite = document.createElement("a");
         var replyStringNode = document.createElement("span");
-        var colon = document.createElement("span");
+        // var colon = document.createElement("span");
         replyStringNode.innerText = "回复";
-        colon.innerText = ":";
+        // colon.innerText = ":";
 
         this.remarkNode.appendChild(this.remarkerNode);
         this.remarkNode.appendChild(this.replyContainer);
-        this.remarkNode.appendChild(colon)
+        // this.remarkNode.appendChild(colon)
         this.replyContainer.appendChild(replyStringNode);
         this.replyContainer.appendChild(this.remarkedRemarkerNode);
     }
 
     this._setProperties = function() {
-        this.remarkedRemarkerNode = this.remarkerNode.className = "comment-commentor";
+        this.remarkedRemarkerNode.className = "comment-commentor";
+        this.remarkerNode.className = "comment-commentor";
     }
 
     this.update = function() {
@@ -145,7 +146,7 @@ function RemarkRemarker() {
         } else {
             this.remarkerNode.innerText = this.remarkerName;
         }
-        this.remarkerNode.innerText = this.remarkedRemarkerName;
+        this.remarkedRemarkerNode.innerText = this.remarkedRemarkerName;
         if (this.ROOT_REMARKER_FATHER_ID == this.remarkedRemarkerId) {
             this.replyContainer.style = "display:none";
         }
@@ -177,9 +178,9 @@ function Remark() {
         var remarkDom = this.remarker.construct(remarkInfo.remark_id, remarkInfo.nickname, remarkInfo.father_id, remarkInfo.father_author);
         var contentDom = this.content.construct(remarkInfo.content);
         var footDom = this.footer.construct(remarkInfo.publish_time);
-        this.remarkNode.appendChild(this.remarker);
-        this.remarkNode.appendChild(this.content);
-        this.remarkNode.appendChild(this.footer);
+        this.remarkNode.appendChild(remarkDom);
+        this.remarkNode.appendChild(contentDom);
+        this.remarkNode.appendChild(footDom);
     }
 
     this._setProperties = function(remarkId) {
@@ -212,11 +213,11 @@ function ArticleDom() {
         var key;
 
         this.articlePropertyList = {
-            "articleId": "article_id",
-            "authorName": "author_name",
+            "articleId": "articleId",
+            "authorName": "authorName",
             "title": "title",
             "description": "description",
-            "publishTime": "publish_time",
+            "publishTime": "publishTime",
             "tags": "tags",
             "content": "content"
         };
@@ -226,7 +227,6 @@ function ArticleDom() {
                 this[i] = articleInfo[key];
             }
         }
-
         this._create();
         this.update();
         return this.articleNode;
@@ -254,7 +254,7 @@ function ArticleDom() {
     this.update = function() {
         this.articleNode.id = "article-" + this.articleId;
         this.titleAnchor.className = "article-title";
-        this.titleAnchor.href = DOMAIN + API_BLOG_VERSION_1 + "?type=" + REQ_BLOG_TYPE_GET_ARTICLE_BY_ID + "&article_id=" + this.articleId;
+        this.titleAnchor.href = PAGE_ARTICLE + "?type=" + REQ_BLOG_TYPE_GET_ARTICLE_BY_ID + "&article_id=" + this.articleId;
         this.titleAnchor.innerText = this.title;
 
         this.publishTimeContainer.className = "article-meta";

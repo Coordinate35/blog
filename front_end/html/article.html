@@ -20,7 +20,7 @@
         </header>
         <div id="content">
             <div id="article">
-                <article>
+                <!--<article>
                     <header>
                         <h2 id="">
                             <a class="article-title" href="">Lissajous 曲线的动画演示</a>
@@ -33,17 +33,23 @@
                             <p style="text-align: center"><img src="http://www.matrix67.com/blogimage_2016/201610181.gif" alt=""></p>
                         </div>
                     </header>
-                </article>
+                </article>-->
             </div>
             <h2 class="comment-header">评论</h2>
             <div id="comment">
-                <div id="" class="comment-list">
-                    <span><cite class="comment-commentor">Coordinate35</cite><span><span>回复<span><cite class="comment-commentor">baga</cite></span><span>:</span></span>
+                <!--<div id="" class="comment-list">
+                        <span>
+                            <cite class="comment-commentor">Coordinate35</cite>
+                            <span>
+                                <span>回复<span><cite class="comment-commentor">baga</cite>
+                            </span>
+                            <span>:</span>
+                        </span>
                     <div>
                         <p>哈哈示波器</p>
                     </div>
                     <p><a class="comment-footer" href="#">2016年10月19日 00:04</a><span> / </span><a class="comment-footer" href="#">回复</a></p>
-                </div>
+                </div>-->
             </div>
             <div id="comment-poster">
                 <div id="comment-targered-container" style="display:none">
@@ -61,7 +67,7 @@
                 <div id="comment-content" class="comment-input-container">
                     <label class="comment-label">评论<span class="required">*</span></label>
                     <div id="comment-content-container">
-                        <textarea id="comment-content-textarea" name="comment-content" class="comment-textarea" cols="45" rows="8" aria-required="true"></textarea>
+                        <textarea id="comment-content-textarea" name="comment-content" class="comment-textarea" cols="45" rows="4" aria-required="true"></textarea>
                     </div>
                 </div>
                 <div id="comment-nickname" class="comment-input-container">
@@ -70,11 +76,11 @@
                 </div>
                 <div id="comment-email" class="comment-input-container">
                     <label class="comment-label">邮箱<span class="required">*</span></label>
-                    <input type="text" name="comment-email" class="comment-input" />
+                    <input id="comment-email-input" type="text" name="comment-email" class="comment-input" />
                 </div>
                 <div id="comment-website" class="comment-input-container">
                     <label class="comment-label">网站</label>
-                    <input type="text" name="comment-website" class="comment-input" />
+                    <input id="comment-website-input" type="text" name="comment-website" class="comment-input" />
                 </div>
                 <div class="comment-input-container">
                     <botton class="comment-submit-botton" onclick="articleViewController.postRemark()">提交</botton>
@@ -82,6 +88,10 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../js/helper.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/library.js"></script>
+    <script src="../js/ArticleViewController.js"></script>
 </body>
 
 </html>

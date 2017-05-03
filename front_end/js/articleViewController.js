@@ -2,8 +2,8 @@ function ArticleViewController() {
     Controller.call(this);
 
     var articleId;
-    var remarkedRemarkerId = 0;
-    var remarkedRemarkerName = "";
+    var remarkedRemarkerId;
+    var remarkedRemarkerName;
     var remarkContent;
     var remarkerEmail;
     var remarkerNickname;
@@ -11,6 +11,9 @@ function ArticleViewController() {
 
     this.construct = function() {
         this.setIndexLink();
+
+        this.remarkedRemarkerId = 0;
+        this.remarkedRemarkerName = "";
 
         var queryParams = getQueryParams();
         this.articleId = queryParams["article_id"];
@@ -29,7 +32,7 @@ function ArticleViewController() {
     this.getArticleCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
-                var data = responseData.data;
+                var data = eval('(' + responseData.data + ')');
                 this._render(data);
                 break;
         }
@@ -38,23 +41,22 @@ function ArticleViewController() {
     this._render = function(data) {
         var articleInfo = {
             "articleId": data.article_id,
-            "authorName": data.authorName,
+            "authorName": data.author_name,
             "title": data.title,
             "content": data.content,
             "publishTime": data.publish_time,
             "tags": data.tags
         };
-
         this._renderArticle(articleInfo);
-        this._renderRemark(data.comments);
+        this._renderRemark(data.remarks);
     }
 
     this._renderArticle = function(articleInfo) {
         var articleContainer = document.getElementById("article");
         var articleNode = new ArticleDom();
-        var articleDom = articleNode.construct(data);
-        articleDom.setDescriptionNone();
-        articleDom.setContentContainerBlock();
+        var articleDom = articleNode.construct(articleInfo);
+        articleNode.setDescriptionNone();
+        articleNode.setContentContainerBlock();
         articleContainer.appendChild(articleDom);
     }
 
@@ -68,10 +70,15 @@ function ArticleViewController() {
     }
 
     this.postRemark = function() {
-        this.remarkContent = document.getElementById("comment-content-textarea").innerText;
-        this.remarkerNickname = document.getElementById("comment-nickname-input").value;
-        this.remarkerWebsite = document.getElementById("comment-website-input").value;
-        this.remarkerEmail = document.getElementById("comment-email-input").value;
+        var remarkContentTextarea = document.getElementById("comment-content-textarea");
+        var remarkerNicknameInput = document.getElementById("comment-nickname-input");
+        var remarkerWebsiteInput = document.getElementById("comment-website-input");
+        var remarkerEmailInput = document.getElementById("comment-email-input");
+
+        this.remarkContent = remarkContentTextarea.value;
+        this.remarkerNickname = remarkerNicknameInput.value;
+        this.remarkerWebsite = remarkerWebsiteInput.value;
+        this.remarkerEmail = remarkerEmailInput.value;
 
         var requestParams = {
             "father_id": this.remarkedRemarkerId,

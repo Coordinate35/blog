@@ -35,7 +35,14 @@ function IndexViewController() {
         var articleContainer = document.getElementById("content");
         var articleInfo;
         for (var i = 0; i < data.length; ++i) {
-            articleInfo = data[i];
+            articleInfo = {
+                "articleId": data[i].article_id,
+                "authorName": data[i].author_name,
+                "title": data[i].title,
+                "description": data[i].description,
+                "publishTime": data[i].publish_time,
+                "tags": data[i].tags
+            };
             var articleNode = new ArticleDom();
             var articleDom = articleNode.construct(articleInfo);
             articleNode.setDescriptionBlock();

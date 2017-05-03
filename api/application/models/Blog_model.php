@@ -66,8 +66,8 @@ class Blog_model extends MY_Model {
 
     public function get_article_by_id($article_id) {
         $condition = array(
-            'article_id', $article_id,
-            'available', TRUE
+            'article_id' => $article_id,
+            'available' => TRUE
         );
         return $this->db->get_where(TABLE_ARTICLE, $condition)->result_array();
     }

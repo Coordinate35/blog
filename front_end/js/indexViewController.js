@@ -28,7 +28,7 @@ function IndexViewController() {
             "offset": this.offset,
             "type": REQ_BLOG_TYPE_GET_ARTICLES_BY_TIME
         };
-        sendHttpRequest(HTTP_METHOD_GET, DOMAIN, API_BLOG_VERSION_1, this.getArticlesCallback.bind(this), requestParams);
+        sendHttpRequest(HTTP_METHOD_GET, API_DOMAIN, API_BLOG_VERSION_1, this.getArticlesCallback.bind(this), requestParams);
     }
 
     this._renderNewArticle = function(data) {

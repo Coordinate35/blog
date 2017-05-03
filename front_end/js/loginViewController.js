@@ -6,18 +6,18 @@ function LoginViewController() {
     }
 
     this.login = function() {
-        var requestData = {
-            "user_name": document.getElementsByName('name').value,
-            "password": document.getElementsByName('password').value,
+        var requestParams = {
+            "name": document.getElementsByName('name')[0].value,
+            "password": hex_md5(document.getElementsByName('password')[0].value),
             "type": REQ_ADMIN_TYPE_LOGIN
         };
-        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_ADMIN_VERSION_1, this.loginCallback.bind(this), request_data);
+        sendHttpRequest(HTTP_METHOD_GET, API_DOMAIN, API_ADMIN_VERSION_1, this.loginCallback.bind(this), requestParams);
     }
 
     this.loginCallback = function(responseData) {
         switch (responseData.httpStateCode) {
             case HTTP_OK:
-                window.location.href(PAGE_ADD_ARTICLE);
+                window.location.href = PAGE_ADD_ARTICLE;
                 break;
         }
     }

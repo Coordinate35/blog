@@ -33,17 +33,20 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
         var urlencodeParams = dictToUrlencode(params);
         var bodyString = "";
         var REQUEST_COMPLETE = 4;
+        var resquestUrl = host + api;
 
         var http = new XMLHttpRequest();
         method.toUpperCase();
         switch (method) {
             case "GET":
                 if (0 != urlencodeParams.length) {
-                    api += "?" + urlencodeParams;
+                    resquestUrl += "?" + urlencodeParams;
                 }
+                http.open(method, resquestUrl, true);
                 break;
             case "POST":
                 bodyString = urlencodeParams;
+                http.open(method, resquestUrl, true);
                 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 break;
             default:
@@ -59,8 +62,6 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
             }
         }
 
-        var resquestUrl = host + api;
-        http.open(method, resquestUrl, true);
         http.send(bodyString);
     }
 }

@@ -5,13 +5,16 @@ var ENV = "dev"; // dev, debug, production
 
 switch (ENV) {
     case "dev":
-        DOMAIN = 'http://local.api.coordinate35.cn/';
+        API_DOMAIN = 'http://local.api.coordinate35.cn/';
+        DOMAIN = "http://local.blog.coordinate35.cn/";
         break;
     case "debug":
-        DOMAIN = 'http://debug.api.coordinate35.cn/';
+        API_DOMAIN = 'http://debug.api.coordinate35.cn/';
+        DOMAIN = "http://local.blog.coordinate35.cn/";
         break;
     case "production":
-        DOMAIN = 'http://api.coordinate35.cn/';
+        API_DOMAIN = 'http://api.coordinate35.cn/';
+        DOMAIN = "http://local.blog.coordinate35.cn/";
         break;
 }
 
@@ -21,6 +24,8 @@ switch (ENV) {
 var HTML_ROOT = DOMAIN + "html/";
 var THIRD_PARTY_LIB_ROOT = "../third_party/";
 var EDITOR_LIB_PATH = THIRD_PARTY_LIB_ROOT + "editor.md-master/lib/";
+var MD5_LIB_PATH = THIRD_PARTY_LIB_ROOT + "md5/";
+
 
 var PAGE_ADD_ARTICLE = HTML_ROOT + "publish.html";
 
@@ -56,7 +61,7 @@ var API_BLOG_VERSION_1 = 'v1/blog';
 var API_IMAGE_VERSION_1 = 'v1/image';
 
 var REQ_ADMIN_TYPE_LOGIN = 1;
-var REQ_ADMIN_TYPE
+// var REQ_ADMIN_TYPE
 
 var REQ_BLOG_TYPE_ISSUE = 1;
 var REQ_BLOG_TYPE_COMMENT = 2;

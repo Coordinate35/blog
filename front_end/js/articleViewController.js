@@ -23,7 +23,7 @@ function ArticleViewController() {
             "type": REQ_BLOG_TYPE_GET_ARTICLE_BY_ID,
             "article_id": this.articleId
         };
-        sendHttpRequest(HTTP_METHOD_GET, DOMAIN, API_BLOG_VERSION_1, this.getArticleCallback.bind(this), requestParams);
+        sendHttpRequest(HTTP_METHOD_GET, API_DOMAIN, API_BLOG_VERSION_1, this.getArticleCallback.bind(this), requestParams);
     }
 
     this.getArticleCallback = function(responseData) {
@@ -82,7 +82,7 @@ function ArticleViewController() {
             "type": REQ_BLOG_TYPE_COMMENT,
             "article_id": this.articleId
         };
-        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_BLOG_VERSION_1, this.postRemarkCallback.bind(this), requestParams);
+        sendHttpRequest(HTTP_METHOD_POST, API_DOMAIN, API_BLOG_VERSION_1, this.postRemarkCallback.bind(this), requestParams);
     }
 
     this.postRemarkCallback = function(responseData) {

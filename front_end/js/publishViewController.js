@@ -26,7 +26,7 @@ function PublishViewController() {
             "tags": tags,
             "type": REQ_BLOG_TYPE_ISSUE
         };
-        sendHttpRequest(HTTP_METHOD_POST, DOMAIN, API_BLOG_VERSION_1, this.publishCallback.bind(this), requestData);
+        sendHttpRequest(HTTP_METHOD_POST, API_DOMAIN, API_BLOG_VERSION_1, this.publishCallback.bind(this), requestData);
     }
 
     this.publishCallback = function(responseData) {

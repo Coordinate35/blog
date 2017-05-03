@@ -1,7 +1,7 @@
 /**
  * Environment config
  */
-var ENV = "dev"; // dev, debug, production
+var ENV = "production"; // dev, debug, production
 var PROTOCOL = "http://";
 
 switch (ENV) {

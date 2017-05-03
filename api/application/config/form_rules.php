@@ -57,6 +57,11 @@ $config = array(
             'rules' => 'trim|required'
         ),
         array(
+            'field' => 'content_md',
+            'label' => 'Content raw markdown',
+            'rules' => 'trim|required'
+        ),
+        array(
             'field' => 'tags',
             'label' => 'Tags',
             'rules' => 'trim|required|max_length[50]'

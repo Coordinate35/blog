@@ -23,12 +23,13 @@ class Blog_model extends MY_Model {
         return $this->db->insert_batch(TABLE_TAG, $data);
     }
 
-    public function add_article($title, $description, $content, $author_id) {
+    public function add_article($title, $description, $content, $content_md, $author_id) {
         $time = time();
         $data = array(
             'title' => $title,
             'description' => $description,
             'content' => $content,
+            'content_md' => $content_md,
             'author_id' => $author_id,
             'publish_time' => $time,
             'last_edit_time' => $time

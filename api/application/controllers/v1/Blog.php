@@ -232,6 +232,7 @@ class Blog extends MY_Controller {
         $title = $this->input->post('title', TRUE);
         $description = $this->input->post('description', TRUE);
         $content = $this->input->post('content', TRUE);
+        $content_md = $this->input->post('content_md', TRUE);
         $tags = $this->input->post('tags', TRUE);
         $tags = explode('|', $tags);
         $admin_info = $this->admin->get_admin_by_identifier($identifier);
@@ -251,7 +252,7 @@ class Blog extends MY_Controller {
             $this->blog->add_tags($new_tags);
         }
 
-        $new_article_id = $this->blog->add_article($title, $description, $content, $admin_info[0]['admin_id']);
+        $new_article_id = $this->blog->add_article($title, $description, $content, $content_md, $admin_info[0]['admin_id']);
 
         $related_tags = $this->_get_tags_info($tags);
 

@@ -13,14 +13,14 @@ function PublishViewController() {
         var articleHtml = this.editor.getHTML();
         var descriptionMarkdown;
         var descriptionHtml;
-        var title = document.getElementsByName("title").value;
-        var tags = document.getElementsByName("tags").value;
+        var title = document.getElementsByName("title")[0].value;
+        var tags = document.getElementsByName("tags")[0].value;
 
         descriptionMarkdown = this._filterDescription(articleMarkdown, DESCRIPTION_LINES);
         descriptionHtml = this._markdownToHtml(descriptionMarkdown);
         var requestData = {
             "title": title,
-            "description": description,
+            "description": descriptionHtml,
             "content": articleHtml,
             "content_md": articleMarkdown,
             "tags": tags,
@@ -55,12 +55,13 @@ function PublishViewController() {
         var fakeContainer = document.createElement('div');
         fakeContainer.id = "fakeContainer";
         fakeContainer.style.display = 'none';
-        document.body.appendChild(fake_container);
+        document.body.appendChild(fakeContainer);
         editormd.markdownToHTML("fakeContainer", {
             markdown: markdown
         });
         descriptionHtml = fakeContainer.innerHTML;
         document.body.removeChild(fakeContainer);
+        return descriptionHtml;
     }
 }
 

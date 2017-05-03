@@ -5,7 +5,7 @@ const LOGIN_TIMEOUT = 54000;
 
 const ALLOW_REGISTER = TRUE;
 const COOKIE_EXPIRED_TIME = 54000;
-const COOKIE_DOMAIN = '.coordinate35.cn';
+const COOKIE_DOMAIN = 'http://api.coordinate35.cn';
 
 switch (ENVIRONMENT) {
     case 'development':

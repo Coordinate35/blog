@@ -30,28 +30,12 @@ if (!(dictToUrlencode && typeof(dictToUrlencode) == "function")) {
 
 if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
     function sendHttpRequest(method, host, api, callback, params = {}) {
-        var urlencodeParams = dictToUrlencode(params);
         var bodyString = "";
         var REQUEST_COMPLETE = 4;
         var resquestUrl = host + api;
 
         var http = new XMLHttpRequest();
         method.toUpperCase();
-        switch (method) {
-            case "GET":
-                if (0 != urlencodeParams.length) {
-                    resquestUrl += "?" + urlencodeParams;
-                }
-                http.open(method, resquestUrl, true);
-                break;
-            case "POST":
-                bodyString = urlencodeParams;
-                http.open(method, resquestUrl, true);
-                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                break;
-            default:
-                return false;
-        }
         http.onreadystatechange = function() {
             if (REQUEST_COMPLETE == http.readyState) {
                 var response = {
@@ -60,9 +44,28 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
                 }
                 callback(response);
             }
-        }
-
+        };
         http.withCredentials = true;
-        http.send(bodyString);
+        switch (method) {
+            case "GET":
+                var urlencodeParams = dictToUrlencode(params);
+                if (0 != urlencodeParams.length) {
+                    resquestUrl += "?" + urlencodeParams;
+                }
+                http.open(method, resquestUrl, true);
+                http.send();
+                break;
+            case "POST":
+                var form = new FormData;
+                var key;
+                for (key in params) {
+                    form.append(key, perams[key]);
+                }
+                http.open(method, resquestUrl, true);
+                http.send(form);
+                break;
+            default:
+                return false;
+        }
     }
 }

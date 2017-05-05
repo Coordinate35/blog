@@ -59,7 +59,7 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
                 var form = new FormData;
                 var key;
                 for (key in params) {
-                    form.append(key, perams[key]);
+                    form.append(key, params[key]);
                 }
                 http.open(method, resquestUrl, true);
                 http.send(form);

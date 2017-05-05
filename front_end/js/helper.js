@@ -62,7 +62,7 @@ if (!(sendHttpRequest && typeof(sendHttpRequest) == "function")) {
             }
         }
 
-        http.withCredentials = "true";
+        http.withCredentials = true;
         http.send(bodyString);
     }
 }

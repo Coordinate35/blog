@@ -61,10 +61,6 @@ class Admin extends MY_Controller {
 
         setcookie('identifier', $identifier, $now + COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
         setcookie('token', $token, $now + COOKIE_EXPIRED_TIME, '/', COOKIE_DOMAIN);
-        setcookie('identifier', $identifier, $now + COOKIE_EXPIRED_TIME, '/', 'blog.coordinate35.cn');
-        setcookie('token', $token, $now + COOKIE_EXPIRED_TIME, '/', 'blog.coordinate35.cn');
-        setcookie('identifier', $identifier, $now + COOKIE_EXPIRED_TIME, '/', 'api.coordinate35.cn');
-        setcookie('token', $token, $now + COOKIE_EXPIRED_TIME, '/', 'api.coordinate35.cn');
 
         // $this->session->set_userdata('admin_id', $admin_info[0]['admin_id']);
 

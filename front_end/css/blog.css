@@ -20,6 +20,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    font-size: 14px;
+}
+
 a:hover {
     color: #009bdf;
 }

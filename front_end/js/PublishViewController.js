@@ -31,7 +31,7 @@ function PublishViewController() {
 
     this.publishCallback = function(responseData) {
         switch (responseData.httpStateCode) {
-            case HTTP_OK:
+            case HTTP_NO_CONTENT:
                 alert(PUBLISH_ARTICLE_SUCCESS);
                 break;
         }
@@ -60,11 +60,11 @@ function PublishViewController() {
             }
         }
         if (codeEdge % 2 != 0) {
-            while (articleInLines[descriptionLines].indexOf("```") == 0) {
+            while ((articleInLines[descriptionLines].indexOf("```") < 0) && (descriptionLines <= articleInLines.length)) {
                 descriptionLines++;
             }
         }
-        return descriptionLines;
+        return descriptionLines + 1;
     }
 
     this._markdownToHtml = function(markdown) {

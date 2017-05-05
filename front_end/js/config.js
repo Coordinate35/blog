@@ -54,6 +54,7 @@ var HTTP_METHOD_GET = 'GET';
  * HTTP reposne code const
  */
 var HTTP_OK = 200;
+var HTTP_NO_CONTENT = 204;
 
 /**
  * API config

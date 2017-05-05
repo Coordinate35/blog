@@ -60,7 +60,7 @@ function PublishViewController() {
             }
         }
         if (codeEdge % 2 != 0) {
-            while (articleInLines[descriptionLines].indexOf("```") == 0) {
+            while ((articleInLines[descriptionLines].indexOf("```") < 0) && (descriptionLines <= articleInLines.length)) {
                 descriptionLines++;
             }
         }

@@ -201,3 +201,7 @@ botton.submit {
 .commenter-archor:hover {
     color: #009bdf;
 }
+
+#article {
+    font-size: 14px;
+}

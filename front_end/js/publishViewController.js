@@ -55,7 +55,7 @@ function PublishViewController() {
     this._adjustDescriptionLines = function(articleInLines, descriptionLines) {
         var codeEdge = 0;
         for (var i = 0; i < descriptionLines; ++i) {
-            if (articleInLines[i].indexOf("```") > 0) {
+            if (articleInLines[i].indexOf("```") >= 0) {
                 codeEdge++;
             }
         }

@@ -42,6 +42,7 @@ function PublishViewController() {
         if (articleInLines.length < descriptionLines) {
             descriptionMarkdown = article;
         } else {
+            descriptionLines = this._adjustDescriptionLines(articleInLines, descriptionLines);
             while (articleInLines.length > descriptionLines) {
                 articleInLines.pop();
             }
@@ -49,6 +50,21 @@ function PublishViewController() {
         }
 
         return descriptionMarkdown;
+    }
+
+    this._adjustDescriptionLines = function(articleInLines, descriptionLines) {
+        var codeEdge = 0;
+        for (var i = 0; i < descriptionLines; ++i) {
+            if (articleInLines[i].indexOf("```") > 0) {
+                codeEdge++;
+            }
+        }
+        if (codeEdge % 2 != 0) {
+            while (articleInLines[descriptionLines].indexOf("```") == 0) {
+                descriptionLines++;
+            }
+        }
+        return descriptionLines;
     }
 
     this._markdownToHtml = function(markdown) {

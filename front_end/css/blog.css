@@ -11,6 +11,19 @@ botton:hover {
     background-color: #009bdf;
 }
 
+p {
+    font-size: 14px;
+}
+
+a {
+    color: #0075c9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #009bdf;
+}
+
 #page {
     width: 660px;
     margin: 0 auto;
@@ -200,8 +213,4 @@ botton.submit {
 
 .commenter-archor:hover {
     color: #009bdf;
-}
-
-#article {
-    font-size: 14px;
 }

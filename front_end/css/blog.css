@@ -222,3 +222,11 @@ botton.submit {
 .commenter-archor:hover {
     color: #009bdf;
 }
+
+#comment-block {
+    color: #333;
+}
+
+#comment-block:hover {
+    color: #333;
+}

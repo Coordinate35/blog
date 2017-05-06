@@ -273,6 +273,7 @@ function ArticleDom() {
         this.publishTimeNode = document.createElement('time');
         this.descriptionContainer = document.createElement("div");
         this.contentContainer = document.createElement("div");
+        this.readArticleArchor = document.createElement("a");
 
         this.articleNode.appendChild(this.headerNode);
         this.headerNode.appendChild(this.titleContainer);
@@ -281,12 +282,14 @@ function ArticleDom() {
         this.publishTimeContainer.appendChild(this.publishTimeNode);
         this.articleNode.appendChild(this.descriptionContainer);
         this.articleNode.appendChild(this.contentContainer);
+        this.articleNode.appendChild(this.readArticleArchor);
     }
 
     this.update = function() {
         this.articleNode.id = "article-" + this.articleId;
         this.titleAnchor.className = "article-title";
         this.titleAnchor.href = PAGE_ARTICLE + "?type=" + REQ_BLOG_TYPE_GET_ARTICLE_BY_ID + "&article_id=" + this.articleId;
+        this.readArticleArchor.href = this.titleAnchor.href;
         this.titleAnchor.innerText = this.title;
 
         this.publishTimeContainer.className = "article-meta";
@@ -302,10 +305,12 @@ function ArticleDom() {
 
     this.setDescriptionNone = function() {
         this.descriptionContainer.style.display = "none";
+        this.readArticleArchor.style.display = "none";
     }
 
     this.setDescriptionBlock = function() {
         this.descriptionContainer.style.display = "block";
+        this.readArticleArchor.style.display = "block";
     }
 
     this.setContentContainerNone = function() {

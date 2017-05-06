@@ -24,6 +24,13 @@ body {
     font-family: "Microsoft YaHei", "Arial", "Helvetica", "sans-serif", "STXihei", "宋体";
 }
 
+@media screen and (max-width: 850px) {
+    body {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 li {
     font-size: 14px;
 }

@@ -22,7 +22,7 @@ class Image extends MY_Controller {
     public function post() {
         $date = date("Y-m-d");
         $time = time();
-        $this->upload_config["file_name"] = $date.'~'.$time;
+        $this->upload_config["file_name"] = $date.'-'.$time;
         $this->load->library('upload', $this->upload_config);
         
         if (FALSE === $this->upload->do_upload(UPLOAD_IMAGE_KEY)) {
@@ -36,7 +36,7 @@ class Image extends MY_Controller {
             $this->response = array(
                 'success' => ARTICLE_IMAGE_UPLOAD_SUCCESS,
                 'message' => $this->lang->line('prompt_article_image_upload_success'),
-                'url' => PROTOCAL.ARTICLE_IMAGE_URL_PATH.$this->upload_config["file_name"]
+                'url' => PROTOCAL.DOMAIN_NAME.'/'.ARTICLE_IMAGE_URL_PATH.'/'.$this->upload_config["file_name"].$this->upload->data('file_ext')
             );
             $this->http_status_code = HTTP_OK;
         }

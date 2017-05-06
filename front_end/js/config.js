@@ -20,6 +20,13 @@ switch (ENV) {
 }
 
 /**
+ * API config
+ */
+var API_ADMIN_VERSION_1 = 'v1/admin';
+var API_BLOG_VERSION_1 = 'v1/blog';
+var API_IMAGE_VERSION_1 = 'v1/image';
+
+/**
  * Project file position config
  */
 var HTML_ROOT = DOMAIN + "html/";
@@ -51,18 +58,14 @@ var HTTP_METHOD_POST = 'POST';
 var HTTP_METHOD_GET = 'GET';
 
 /**
- * HTTP reposne code const
+ * HTTP reponse code const
  */
 var HTTP_OK = 200;
 var HTTP_NO_CONTENT = 204;
 
 /**
- * API config
+ * HTTP request type const
  */
-var API_ADMIN_VERSION_1 = 'v1/admin';
-var API_BLOG_VERSION_1 = 'v1/blog';
-var API_IMAGE_VERSION_1 = 'v1/image';
-
 var REQ_ADMIN_TYPE_LOGIN = 1;
 // var REQ_ADMIN_TYPE
 

@@ -9,6 +9,8 @@ require_once(APPPATH.'config/server_const.php');
 
 require_once(APPPATH.'config/database_const.php');
 
+require_once(APPPATH.'config/article_image_upload_const.php');
+
 class MY_Controller extends CI_Controller {
 
     protected $response;

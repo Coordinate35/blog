@@ -310,6 +310,14 @@ function ArticleDom() {
         this.descriptionContainer.style.display = "none";
     }
 
+    this.setReadArticleNone = function() {
+        this.readArticleContainer.style.display = "none";
+    }
+
+    this.setReadArticleBlock = function() {
+        this.readArticleContainer.style.display = "block";
+    }
+
     this.setDescriptionBlock = function() {
         this.descriptionContainer.style.display = "block";
     }

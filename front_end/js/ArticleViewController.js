@@ -57,6 +57,7 @@ function ArticleViewController() {
         var articleDom = articleNode.construct(articleInfo);
         articleNode.setDescriptionNone();
         articleNode.setContentContainerBlock();
+        articleNode.setReadArticleNone()
         articleContainer.appendChild(articleDom);
     }
 

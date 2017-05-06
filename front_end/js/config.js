@@ -80,7 +80,7 @@ var REQ_BLOG_TYEP_GET_TAGS = 4;
  * Project number config
  */
 var DESCRIPTION_LINES = 10;
-var PAGE_ARTICLE_NUMBER = 10;
+var PAGE_ARTICLE_NUMBER = 20;
 
 /**
  * Project language const

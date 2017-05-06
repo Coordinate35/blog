@@ -58,3 +58,5 @@ $route['v1/admin']['GET'] = 'v1/admin/get';
 
 $route['v1/blog']['GET'] = 'v1/blog/get';
 $route['v1/blog']['POST'] = 'v1/blog/post';
+
+$route['v1/image']['POST'] = 'v1/image/post';

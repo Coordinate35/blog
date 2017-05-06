@@ -37,7 +37,7 @@ class Image extends MY_Controller {
                 'success' => ARTICLE_IMAGE_UPLOAD_SUCCESS,
                 // 'message' => $this->lang->line('prompt_article_image_upload_success'),
                 // 'url' => PROTOCAL.BLOG_DOMIAN.'/'.ARTICLE_IMAGE_URL_PATH.'/'.$this->upload_config["file_name"].$this->upload->data('file_ext')
-                'url' => '../'.ARTICLE_IMAGE_URL_PATH.'/'.$this->upload_config["file_name"].$this->upload->data('file_ext')
+                'url' => '/'.ARTICLE_IMAGE_URL_PATH.'/'.$this->upload_config["file_name"].$this->upload->data('file_ext')
             );
             $this->http_status_code = HTTP_OK;
         }

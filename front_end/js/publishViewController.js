@@ -31,7 +31,7 @@ function PublishViewController() {
 
     this.publishCallback = function(responseData) {
         switch (responseData.httpStateCode) {
-            case HTTP_OK:
+            case HTTP_NO_CONTENT:
                 alert(PUBLISH_ARTICLE_SUCCESS);
                 break;
         }
@@ -64,7 +64,7 @@ function PublishViewController() {
                 descriptionLines++;
             }
         }
-        return descriptionLines;
+        return descriptionLines + 1;
     }
 
     this._markdownToHtml = function(markdown) {

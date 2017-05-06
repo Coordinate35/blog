@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Image extends MY_Controller {
     
-    private $config;
+    private $upload_config;
     private $http_status_code;
 
     public function __construct() {
         parent::__construct();
         $this->load->helper(array("url", "form"));
 
-        $this->config = array(
+        $this->upload_config = array(
             "upload_path" => ARTICLE_IMAGE_UPLOAD_PATH,
             "allow_types" => ARTICLE_IMAGE_ALLOW_TYPES,
             "max_size" => ARTICLE_IMAGE_MAX_SIZE,
@@ -22,8 +22,8 @@ class Image extends MY_Controller {
     public function post() {
         $date = date("Y-m-d");
         $time = time();
-        $this->config["file_name"] = $date.'~'.$time;
-        $this->load->library('upload', $this->config);
+        $this->upload_config["file_name"] = $date.'~'.$time;
+        $this->load->library('upload', $this->upload_config);
         
         if (FALSE === $this->upload->do_upload(UPLOAD_IMAGE_KEY)) {
             $this->response['error'] = array(
@@ -36,7 +36,7 @@ class Image extends MY_Controller {
             $this->response = array(
                 'success' => ARTICLE_IMAGE_UPLOAD_SUCCESS,
                 'message' => $this->lang->line('prompt_article_image_upload_success'),
-                'url' => PROTOCAL.ARTICLE_IMAGE_URL_PATH.$this->config["file_name"]
+                'url' => PROTOCAL.ARTICLE_IMAGE_URL_PATH.$this->upload_config["file_name"]
             );
             $this->http_status_code = HTTP_OK;
         }

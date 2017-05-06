@@ -12,9 +12,9 @@ class Image extends MY_Controller {
 
         $this->upload_config = array(
             "upload_path" => ARTICLE_IMAGE_UPLOAD_PATH,
-            "allow_types" => ARTICLE_IMAGE_ALLOW_TYPES,
+            "allow_types" => ARTICLE_IMAGE_ALLOWED_TYPES,
             "max_size" => ARTICLE_IMAGE_MAX_SIZE,
-            "max_width" => ARTICLE_IMAGE_MAX_WIRTH,
+            "max_width" => ARTICLE_IMAGE_MAX_WIDTH,
             "max_height" => ARTICLE_IMAGE_MAX_HEIGHT
         );
     }

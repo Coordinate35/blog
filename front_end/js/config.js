@@ -48,7 +48,7 @@ var EDITOR_CONFIG = {
     saveHTMLToTextarea: true,
     imageUpload: true,
     imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-    imageUploadURL: API_IMAGE_VERSION_1,
+    imageUploadURL: API_DOMAIN + API_IMAGE_VERSION_1,
 };
 
 /**

@@ -1,7 +1,10 @@
 @media screen and (max-width: 850px) {
     body {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    body #page {
+        width: 100%;
     }
 }
 
@@ -40,12 +43,12 @@ a:hover {
 }
 
 #page {
-    width: 660px;
+    width: 60%;
     margin: 0 auto;
 }
 
 img {
-    width: 660px;
+    width: 60%;
 }
 
 #login-form {

@@ -18,6 +18,7 @@ function PublishViewController() {
 
         descriptionMarkdown = this._filterDescription(articleMarkdown, DESCRIPTION_LINES);
         descriptionHtml = this._markdownToHtml(descriptionMarkdown);
+        articleHtml = this._markdownToHtml(articleMarkdown);
         var requestData = {
             "title": title,
             "description": descriptionHtml,

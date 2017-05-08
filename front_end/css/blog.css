@@ -248,6 +248,7 @@ botton.submit {
 
 #comment-block {
     color: #333;
+    text-decoration: none;
 }
 
 #comment-block:hover {

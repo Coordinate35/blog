@@ -300,9 +300,9 @@ function ArticleDom() {
         this.publishTimeNode.className = "publish-time";
         this.publishTimeNode.innerText = this.publishTime;
 
-        this.descriptionContainer.className = "article-introduction";
+        this.descriptionContainer.className = "article-introduction editormd-html-preview";
         this.descriptionContainer.innerHTML = this.description;
-        this.contentContainer.className = "article-introduction";
+        this.contentContainer.className = "article-introduction editormd-html-preview";
         this.contentContainer.innerHTML = this.content;
     }
 

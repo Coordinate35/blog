@@ -6,6 +6,9 @@
     body #page {
         width: 100%;
     }
+    body code {
+        white-space: normal;
+    }
 }
 
 #index {

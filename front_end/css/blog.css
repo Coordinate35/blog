@@ -274,4 +274,5 @@ botton.submit {
 
 .tag-archor:hover {
     color: #009bdf;
+    text-decoration: none;
 }

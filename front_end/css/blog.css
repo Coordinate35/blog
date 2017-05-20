@@ -270,6 +270,7 @@ botton.submit {
 .tag-archor {
     font-size: 14px;
     color: #c8c8c8;
+    text-decoration: none;
 }
 
 .tag-archor:hover {

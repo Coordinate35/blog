@@ -37,6 +37,7 @@ var MD5_LIB_PATH = THIRD_PARTY_LIB_ROOT + "md5/";
 
 var PAGE_ADD_ARTICLE = HTML_ROOT + "publish.html";
 var PAGE_ARTICLE = HTML_ROOT + "article.html";
+var PAGE_INDEX = HTML_ROOT + "index.html";
 
 /**
  * editor.md config

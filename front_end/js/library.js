@@ -275,6 +275,7 @@ function ArticleDom() {
         this.contentContainer = document.createElement("div");
         this.readArticleContainer = document.createElement("div");
         this.readArticleArchor = document.createElement("a");
+        this.tagsContainer = document.createElement("p");
 
         this.articleNode.appendChild(this.headerNode);
         this.headerNode.appendChild(this.titleContainer);
@@ -284,6 +285,7 @@ function ArticleDom() {
         this.articleNode.appendChild(this.descriptionContainer);
         this.articleNode.appendChild(this.contentContainer);
         this.articleNode.appendChild(this.readArticleContainer);
+        this.articleNode.appendChild(this.tagsContainer);
         this.readArticleContainer.appendChild(this.readArticleArchor);
     }
 
@@ -304,6 +306,36 @@ function ArticleDom() {
         this.descriptionContainer.innerHTML = this.description;
         this.contentContainer.className = "article-introduction editormd-html-preview";
         this.contentContainer.innerHTML = this.content;
+
+        this._updateTags();
+    }
+
+    this._updateTags = function() {
+        var tagIndex;
+        this.tagsContainer.className = "tags-container";
+        for (tagIndex in this.tags) {
+            if (0 == tagIndex) {
+                this._appendTag(this.tags[tagIndex]);
+            } else {
+                this._appendTagsSplitor()
+                this._appendTag(this.tags[tagIndex]);
+            }
+        }
+    }
+
+    this._appendTagsSplitor = function() {
+        var splitorSpan = document.createElement('span');
+        splitorSpan.innerText = ',';
+        splitorSpan.className = "tag-splitor";
+        this.tagsContainer.appendChild(splitorSpan);
+    }
+
+    this._appendTag = function(tag) {
+        var tagArchor = document.createElement('a');
+        tagArchor.href = PAGE_INDEX + "?type=" + REQ_BLOG_TYPE_GET_ARTICLES_BY_TAG + "&tag_id=" + tag.tag_id;
+        tagArchor.innerText = tag.content;
+        tagArchor.className = "tag-archor";
+        this.tagsContainer.appendChild(tagArchor);
     }
 
     this.setDescriptionNone = function() {

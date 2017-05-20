@@ -3,10 +3,19 @@ function IndexViewController() {
 
     var offset;
     var limit;
+    var type;
+    var queryParams;
 
     this.contruct = function() {
+        this.queryParams = getQueryParams();
+
         this.offset = 0;
         this.limit = PAGE_ARTICLE_NUMBER;
+        if ("type" in this.queryParams) {
+            this.type = parseInt(this.queryParams.type);
+        } else {
+            this.type = REQ_BLOG_TYPE_GET_ARTICLES_BY_TIME;
+        }
 
         this.setIndexLink();
         this._getArticlesAndRender();
@@ -26,8 +35,13 @@ function IndexViewController() {
         var requestParams = {
             "limit": this.limit,
             "offset": this.offset,
-            "type": REQ_BLOG_TYPE_GET_ARTICLES_BY_TIME
+            "type": this.type
         };
+        switch (this.type) {
+            case REQ_BLOG_TYPE_GET_ARTICLES_BY_TAG:
+                requestParams['tag_id'] = this.queryParams.tag_id;
+                break;
+        }
         sendHttpRequest(HTTP_METHOD_GET, API_DOMAIN, API_BLOG_VERSION_1, this.getArticlesCallback.bind(this), requestParams);
     }
 

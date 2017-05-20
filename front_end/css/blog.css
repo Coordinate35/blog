@@ -257,3 +257,21 @@ botton.submit {
 #comment-block:hover {
     color: #333;
 }
+
+.tags-container {
+    /*margin-top: 0;
+    margin-bottom: 0;*/
+}
+
+.tag-splitor {
+    color: #c8c8c8;
+}
+
+.tag-archor {
+    font-size: 14px;
+    color: #c8c8c8;
+}
+
+.tag-archor:hover {
+    color: #009bdf;
+}

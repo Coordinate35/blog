@@ -243,9 +243,9 @@ class Blog extends MY_Controller {
 
         $identifier = get_cookie('identifier');
         $title = $this->input->post('title', TRUE);
-        $description = $this->input->post('description', TRUE);
-        $content = $this->input->post('content', TRUE);
-        $content_md = $this->input->post('content_md', TRUE);
+        $description = $this->input->post('description');
+        $content = $this->input->post('content');
+        $content_md = $this->input->post('content_md');
         $tags = $this->input->post('tags', TRUE);
         $tags = explode('|', $tags);
         $admin_info = $this->admin->get_admin_by_identifier($identifier);

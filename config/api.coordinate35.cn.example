@@ -1,0 +1,29 @@
+server {
+    listen 80;
+    server_name  api.coordinate35.cn;
+    set $root_folder /Users/Coordinate35/OI/program/blog;
+    root $root_folder;
+
+    location ~ /index.php {
+	fastcgi_param  SCRIPT_FILENAME  $root_folder/api/index.php;
+	fastcgi_pass 127.0.0.1:9000;
+	include fastcgi_params;
+        fastcgi_buffers 8 128k;
+        send_timeout 600;
+	client_max_body_size 50M;
+        include        fastcgi_params;
+	fastcgi_param PATH_INFO $fastcgi_script_name;
+        header_filter_by_lua_block {
+            ngx.header["Access-Control-Allow-Origin"] = "http://local.blog.coordinate35.cn"
+            ngx.header["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+            ngx.header["Access-Control-Allow-Credentials"] = "true"
+        }
+    }
+
+    location / {
+	rewrite ^/(.*)$ /index.php/$1 last;
+    }
+
+    access_log /var/log/nginx/blog.coordinate35.cn/access.log;
+    error_log  /var/log/nginx/blog.coordinate35.cn/error.log;
+}

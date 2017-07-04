@@ -1,0 +1,30 @@
+blog-php:
+    image: blog-php:v1
+    volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - ./api:/var/www/blog.coordinate35.net/api
+    ports:
+        - 127.0.0.1:1411:9000
+    environment:
+        - TZ=Asia/Shanghai
+    links:
+        - blog-redis:redis
+        - blog-postgres:postgres
+blog-postgres:
+    image: blog-postgres:v1
+    volumes:
+        - /etc/localtime:/etc/localtime:ro
+    environment:
+        - TZ=Asia/Shanghai
+blog-redis:
+    image: blog-redis:v1
+    volumes:
+        - /etc/localtime:/etc/localtime:ro
+    environment:
+        - TZ=Asia/Shanghai
+blog-phppgadmim:
+    image: zhihaojun/phppgadmin
+    ports:
+        - 127.0.0.1:1412:80
+    links:
+        - blog-postgres:postgres

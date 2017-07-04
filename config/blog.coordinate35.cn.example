@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name local.blog.coordinate35.cn;
+    set $root_folder /Users/Coordinate35/OI/program/blog/front_end;
+    root $root_folder;
+    index html/index.html;
+
+    location / {
+        expires 1s;
+    }
+
+    access_log /var/log/nginx/blog.coordinate35.cn/access.log;
+    error_log /var/log/nginx/blog.coordinate35.cn/error.log;
+}

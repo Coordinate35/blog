@@ -2,4 +2,4 @@ api/index.php
 api/application/config/database.php
 front_end/js/config.js
 docker-compose.yml
-config/php.ini
+environment/php/php.ini

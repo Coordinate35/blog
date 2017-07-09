@@ -1,0 +1,1 @@
+FROM zhihaojun/phppgadmin:latest

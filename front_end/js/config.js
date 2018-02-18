@@ -2,7 +2,7 @@
  * Environment config
  */
 var ENV = "production"; // dev, debug, production
-var PROTOCOL = "http://";
+var PROTOCOL = "https://";
 
 switch (ENV) {
     case "dev":

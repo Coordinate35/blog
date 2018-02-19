@@ -3,6 +3,7 @@ blog-php:
     volumes:
         - /etc/localtime:/etc/localtime:ro
         - ./api:/var/www/blog.coordinate35.net/api
+        - /mnt/blog/upload/article_image:/mnt/blog/upload/article_image
     ports:
         - 127.0.0.1:1411:9000
     environment:

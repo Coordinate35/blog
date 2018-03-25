@@ -41,6 +41,10 @@ body {
     font-family: "Microsoft YaHei", "Arial", "Helvetica", "sans-serif", "STXihei", "宋体";
 }
 
+article {
+    margin-bottom: 40px;
+}
+
 li {
     font-size: 14px;
 }
@@ -61,8 +65,14 @@ a:hover {
     display: flex;
     flex-direction: row;
     position: relative;
+    margin-top: 5px;
     margin-bottom: 40px;
     flex-wrap: wrap;
+}
+
+#link-header {
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 #link-list li {

@@ -62,11 +62,12 @@ a:hover {
     flex-direction: row;
     position: relative;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 #link-list li {
     line-height: 26px;
-    flex: 1 0 33%
+    flex: 1 0 10%
 }
 
 img {

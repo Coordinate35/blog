@@ -61,6 +61,12 @@ a:hover {
     display: flex;
     flex-direction: row;
     position: relative;
+    margin-bottom: 40px;
+}
+
+#link-list li {
+    line-height: 26px;
+    flex: 1 0 33%
 }
 
 img {

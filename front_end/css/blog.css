@@ -55,6 +55,13 @@ a:hover {
     margin: 0 auto;
 }
 
+#link-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
 img {
     width: 60%;
 }

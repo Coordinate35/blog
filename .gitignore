@@ -1,5 +1,7 @@
-api/index.php
-api/application/config/database.php
+back_end/blog/index.php
+back_end/blog/application/config/database.php
+back_end/inspiration-service/src/app/vendor
+back_end/inspiration-service/src/app/app
 front_end/js/config.js
 docker-compose.yml
 environment/php/php.ini

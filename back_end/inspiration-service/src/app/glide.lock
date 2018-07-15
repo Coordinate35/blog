@@ -1,0 +1,39 @@
+hash: c79dee672430c9caf7cf4d65eb3bf56f648ea3405354f5d1ada1ea6bbe2d3900
+updated: 2018-07-15T23:42:39.142188+08:00
+imports:
+- name: github.com/gin-contrib/sse
+  version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
+- name: github.com/gin-gonic/gin
+  version: d459835d2b077e44f7c9b453505ee29881d5d12d
+  subpackages:
+  - binding
+  - render
+- name: github.com/go-sql-driver/mysql
+  version: d523deb1b23d913de5bdada721a6071e71283618
+- name: github.com/golang/glog
+  version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
+- name: github.com/golang/protobuf
+  version: 14aad3d5ea4c323bcd7a2137e735da24a76e814c
+  subpackages:
+  - proto
+- name: github.com/gomodule/redigo
+  version: 9c11da706d9b7902c6da69c592f75637793fe121
+  subpackages:
+  - redis
+- name: github.com/mattn/go-isatty
+  version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/sirupsen/logrus
+  version: c155da19408a8799da419ed3eeb0cb5db0ad5dbc
+- name: github.com/ugorji/go
+  version: 2e1067cd04ec91c6fdf491ac8028c9d3aea73ab4
+  subpackages:
+  - codec
+- name: golang.org/x/sys
+  version: ac767d655b305d4e9612f5f6e33120b9176c4ad4
+  subpackages:
+  - unix
+- name: gopkg.in/go-playground/validator.v8
+  version: 5f1438d3fca68893a817e4a66806cea46a9e4ebf
+- name: gopkg.in/yaml.v2
+  version: 5420a8b6744d3b0345ab293f6fcba19c978f1183
+testImports: []

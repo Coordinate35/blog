@@ -1,0 +1,13 @@
+package: .
+import:
+- package: github.com/gin-gonic/gin
+  version: ^1.2.0
+- package: github.com/go-sql-driver/mysql
+  version: ^1.4.0
+- package: github.com/gomodule/redigo
+  version: ^2.0.0
+  subpackages:
+  - redis
+- package: github.com/golang/glog
+- package: github.com/sirupsen/logrus
+  version: ^1.0.5
